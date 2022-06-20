@@ -1,28 +1,22 @@
 // pages/home/home.js
 
-import { config } from "../../config/config";
+import { carousel } from "../../model/carousel";
 
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    carouselA: {}
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.request({
-      url: `${config.baseUrl}/v1/themeByNames`,
-      method: 'GET',
-      data: {
-        names: 't1',
-      },
-      header: {
-        'Content-Type': 'application/json',
-      },
-      success: function (res) { },
-    });
+    carousel.getCarousel(data => this.setData({
+      carouselA: data[1]
+    }))
   },
 
   /**
