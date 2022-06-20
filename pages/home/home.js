@@ -1,22 +1,21 @@
 // pages/home/home.js
 
-import { carousel } from "../../model/carousel";
+import { Carousel } from "../../model/carousel";
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    carouselA: {}
+    carouselA: {},
+    carouselList: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    carousel.getCarousel(data => this.setData({
-      carouselA: data[1]
-    }))
+  async onLoad(options) {
+    this.initData();
   },
 
   /**
@@ -53,4 +52,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() { },
+
+  /**
+   * 初始化数据
+   */
+  async initData() {
+    const result = await Carousel.getCarousel();
+    this.setData({
+      carouselA: result.data[1],
+      carouselList: result.data
+    });
+  }
+
 });

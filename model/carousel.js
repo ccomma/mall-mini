@@ -1,25 +1,19 @@
-import { config } from "../config/config";
+import { Http } from "../utils/http";
 
-class carousel {
-    static getCarousel(callback) {
-        wx.request({
-            url: `${config.baseUrl}/carousel/v1/get_carousel_list_by_show`,
-            method: 'GET',
-            // data: {
-            //     names: 't1',
-            // },
-            header: {
-                'Content-Type': 'application/json',
-            },
-            success: res => {
-                if (res.data.success) {
-                    callback(res.data.data);
-                }
-            },
+class Carousel {
+    static carouselV1 = 'carousel/v1';
+
+    /**
+     * 获取轮播图
+     * @returns 轮播图
+     */
+    static async getCarousel() {
+        return await Http.request({
+            url: `${Carousel.carouselV1}/get_carousel_list_by_show`
         });
     }
 }
 
 export {
-    carousel
+    Carousel
 }

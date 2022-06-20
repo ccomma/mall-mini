@@ -1,3 +1,10 @@
 <view>
-    <image class="top-theme" src="{{carouselA.imageUrl}}"></image>
+    <image class="top-theme" src="{{carouselA.imageUrl}}" />
+    <swiper class="top-theme" indicator-dots autoplay circular>
+        <block wx:for="{{carouselList}}" wx:key="item">
+            <swiper-item>
+                <image class="top-theme" src="{{item.imageUrl}}" />
+            </swiper-item>
+        </block>
+    </swiper>
 </view>
