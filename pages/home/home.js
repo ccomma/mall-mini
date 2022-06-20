@@ -1,4 +1,7 @@
 // pages/home/home.js
+
+import { config } from "../../config/config";
+
 Page({
   /**
    * 页面的初始数据
@@ -10,50 +13,50 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: "http://localhost:8080/v1/themeByNames",
-      method: "GET",
+      url: `${config.baseUrl}/v1/themeByNames`,
+      method: 'GET',
       data: {
-        names: "t-1",
+        names: 't1',
       },
       header: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      success: function (res) {},
+      success: function (res) { },
     });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {},
+  onHide() { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {},
+  onUnload() { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  onPullDownRefresh() { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {},
+  onReachBottom() { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {},
+  onShareAppMessage() { },
 });
