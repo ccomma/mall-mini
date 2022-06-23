@@ -1,6 +1,7 @@
 // pages/home/home.js
 
 import { Carousel } from "../../model/carousel";
+import { Category } from "../../model/category";
 
 Page({
   /**
@@ -8,7 +9,8 @@ Page({
    */
   data: {
     carouselA: {},
-    carouselList: {}
+    carouselList: [],
+    topCategoryList: []
   },
 
   /**
@@ -57,10 +59,12 @@ Page({
    * 初始化数据
    */
   async initData() {
-    const result = await Carousel.getCarousel();
+    const carouselList = await Carousel.getCarouselList();
+    const topCategoryList = await Category.getTopCategoryList();
     this.setData({
-      carouselA: result.data[1],
-      carouselList: result.data
+      carouselA: carouselList[1],
+      carouselList: carouselList,
+      topCategoryList: topCategoryList
     });
   }
 

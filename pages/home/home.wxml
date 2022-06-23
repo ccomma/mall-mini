@@ -7,4 +7,6 @@
             </swiper-item>
         </block>
     </swiper>
+
+    <m-category-grid data="{{topCategoryList}}"></m-category-grid>
 </view>
