@@ -1,12 +1,33 @@
 <view>
-    <image class="top-theme" src="{{carouselA.imageUrl}}" />
+    <!-- 搜索 -->
+    <l-search-bar placeholder="搜索你喜欢的商品" bg-color="#333" show-cancel="{{false}}">
+    </l-search-bar>
+
+    <!-- 分类 -->
+    <l-segment bind:linchange="changeTabs" scrollable="{{true}}" item-width="500">
+      <block wx:for="{{categoryList}}" wx:key="index">
+        <l-segment-item key="{{index}}" slot="{{index}}">
+            <text>
+                {{item.name}}
+            </text>
+        </l-segment-item>
+      </block>
+    </l-segment>
+
+    <!-- 轮播图 -->
     <swiper class="top-theme" indicator-dots autoplay circular>
-        <block wx:for="{{carouselList}}" wx:key="item">
+        <block wx:for="{{carouselList}}" wx:key="index">
             <swiper-item>
                 <image class="top-theme" src="{{item.imageUrl}}" />
             </swiper-item>
         </block>
     </swiper>
 
-    <m-category-grid data="{{topCategoryList}}"></m-category-grid>
+    <!-- 模块 -->
+    <l-grid l-class="grid">
+      <block wx:for="{{modelList}}" wx:key="index">
+        <l-grid-item key="{{index}}" slot="{{index}}">
+        </l-grid-item>
+      </block>
+    </l-grid>
 </view>
