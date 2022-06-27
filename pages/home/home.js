@@ -16,8 +16,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options) {
-    // this.initData();
+  onLoad(options) {
+    this.initData();
   },
 
   /**
@@ -59,8 +59,14 @@ Page({
    * 初始化数据
    */
   async initData() {
+    // 轮播图
     const carouselList = await Carousel.getCarouselList();
+
+    // 分类
     const categoryList = await Category.getTopCategoryList();
+    categoryList.unshift({name:'首页'});
+
+    // 设置数据
     this.setData({
       carouselList: carouselList,
       categoryList: categoryList
