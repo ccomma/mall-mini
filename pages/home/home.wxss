@@ -8,3 +8,29 @@
 .category-item {
   margin: 0 20rpx;
 }
+
+/* 宫格模块 */
+.grid {
+}
+.grid-item {
+  background-color: #fff;
+  width: 100%;
+  height: 200rpx;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: row;
+  padding: 15rpx;
+  box-sizing: border-box;
+}
+.model {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+.model-text {
+  font-weight: 550;
+}
+.model-image {
+  width: 100%;
+}
