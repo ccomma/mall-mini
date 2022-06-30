@@ -8,7 +8,7 @@ class Http {
      * @returns 
      */
     static async request({ url, data = undefined, method = 'GET' }) {
-        const result = await promisic(wx.request)({
+        let result = await promisic(wx.request)({
             url: `${config.baseUrl}/${url}`,
             method,
             data,
@@ -17,7 +17,11 @@ class Http {
             }
         });
 
-        return result.data;
+        if (!result.data || !result.data.success) {
+            // TODO: 异常处理
+        }
+
+        return result.data.data;
     }
 }
 

@@ -2,7 +2,7 @@ import { Paging } from "../utils/paging";
 
 class Item {
 
-    static async getItemPaging() {
+    static getItemPaging() {
         return Paging.instanceStart({
             url: ''
         });

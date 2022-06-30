@@ -22,10 +22,11 @@ class Paging {
         result.request = request;
         result.pageIndex = pageIndex;
         result.pageSize = pageSize;
+        return result;
     }
 
     static instanceStart(request, pageSize = 10) {
-        return Paging.of(request, 1, pageSize);
+        return Paging.instance(request, 1, pageSize);
     }
 
     async next() {
@@ -44,11 +45,10 @@ class Paging {
     // TODO: 分页数据 pagingData 格式尚未明确
     async _doNext() {
         this._setPageParam();
-        let result = await Http.request(this.request);
-        if (!result || !result.data) {
+        let pagingData = await Http.request(this.request);
+        if (!pagingData) {
             return null;
         }
-        let pagingData = result.data;
 
         // 无数据，返回空
         if (pagingData.total === 0) {
@@ -86,6 +86,14 @@ class Paging {
     }
 
     _setPageParam() {
+        if (!this.request.data) {
+            Object.defineProperties(this.request, {
+                data: {
+                    value: {}
+                }
+            });
+        }
+        
         Object.defineProperties(this.request.data, {
             pageIndex: {
                 value: this.pageIndex

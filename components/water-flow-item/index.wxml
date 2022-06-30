@@ -1,0 +1,5 @@
+<view class="container">
+  <image src="{{data.image}}" />
+  <text>{{data.name}}</text>
+  <text>{{data.price}}</text>
+</view>

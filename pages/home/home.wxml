@@ -21,8 +21,8 @@
   </swiper>
   <!-- 模块 -->
   <l-grid l-class="grid" row-num="2">
-    <l-grid-item key="1" slot="1">
-      <view class="grid-item">
+    <l-grid-item key="1" slot="1" l-grid-item-class="grid-item">
+      <view class="grid-model">
         <view class="model">
           <text class="model-text">秒杀</text>
           <image class="model-image" src="https://img14.360buyimg.com/seckillcms/s280x280_jfs/t1/222223/25/12400/108315/622706edEfea4f510/aeffaf9577ac6baa.jpg.webp"></image>
@@ -32,8 +32,8 @@
         </view>
       </view>
     </l-grid-item>
-    <l-grid-item key="2" slot="2">
-      <view class="grid-item">
+    <l-grid-item key="2" slot="2" l-grid-item-class="grid-item">
+      <view class="grid-model">
         <view class="model">
           <text class="model-text">排行榜</text>
           <image class="model-image" src="https://img14.360buyimg.com/seckillcms/s280x280_jfs/t1/222223/25/12400/108315/622706edEfea4f510/aeffaf9577ac6baa.jpg.webp"></image>
@@ -43,8 +43,8 @@
         </view>
       </view>
     </l-grid-item>
-    <l-grid-item key="3" slot="3">
-      <view class="grid-item">
+    <l-grid-item key="3" slot="3" l-grid-item-class="grid-item">
+      <view class="grid-model">
         <view class="model">
           <text class="model-text">发现好货</text>
           <image class="model-image" src="https://img14.360buyimg.com/seckillcms/s280x280_jfs/t1/222223/25/12400/108315/622706edEfea4f510/aeffaf9577ac6baa.jpg.webp"></image>
@@ -55,8 +55,8 @@
         </view>
       </view>
     </l-grid-item>
-    <l-grid-item key="4" slot="4">
-      <view class="grid-item">
+    <l-grid-item key="4" slot="4" l-grid-item-class="grid-item">
+      <view class="grid-model">
         <view class="model">
           <text class="model-text">品牌闪购</text>
           <image class="model-image" src="https://img14.360buyimg.com/seckillcms/s280x280_jfs/t1/222223/25/12400/108315/622706edEfea4f510/aeffaf9577ac6baa.jpg.webp"></image>
@@ -69,5 +69,5 @@
     </l-grid-item>
   </l-grid>
   <!-- 瀑布流 -->
-  <l-water-flow generic:l-water-flow-item="my-water-flow-item"></l-water-flow>
+  <l-water-flow l-class="water-flow" generic:l-water-flow-item="my-water-flow-item"></l-water-flow>
 </view>

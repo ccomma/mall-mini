@@ -8,13 +8,9 @@ class Category {
      * @returns 一级类目
      */
     static async getTopCategoryList() {
-        const categoryListResult = await Http.request({
+        return await Http.request({
             url: `${Category.categoryV1}/get_category_list_by_top`
         });
-
-        if (categoryListResult.success) {
-            return categoryListResult.data;
-        }
     }
 }
 

@@ -4,7 +4,7 @@ const promisic = function (func) {
     return function (params = {}) {
         return new Promise((resolve, reject) => {
             // 包装参数
-            const args = Object.assign(params, {
+            let args = Object.assign(params, {
                 success: res => {
                     resolve(res);
                 },
