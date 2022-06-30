@@ -2,14 +2,15 @@
 
 import { Carousel } from "../../model/carousel";
 import { Category } from "../../model/category";
+import { Item } from "../../model/item";
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    carouselList: [{imageUrl:'https://imgcps.jd.com/ling4/100019386660/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5f3a47329785549f6bc7a6f8/80c01a53/cr/s/q.jpg'},{imageUrl:'https://img14.360buyimg.com/pop/s1180x940_jfs/t1/125178/3/27426/83461/624e59efE96592896/c1a950159a19922e.jpg.webp'}],
-    categoryList: [{name:'首页'},{name:'家电'},{name:'数码'},{name:'食品饮料'},{name:'电脑办公'},{name:'个护清洁'},{name:'女装'},{name:'宠物'},{name:'爱车'},{name:'箱包工具'},{name:'男鞋'}],
+    carouselList: [{ imageUrl: 'https://imgcps.jd.com/ling4/100019386660/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5f3a47329785549f6bc7a6f8/80c01a53/cr/s/q.jpg' }, { imageUrl: 'https://img14.360buyimg.com/pop/s1180x940_jfs/t1/125178/3/27426/83461/624e59efE96592896/c1a950159a19922e.jpg.webp' }],
+    categoryList: [{ name: '首页' }, { name: '家电' }, { name: '数码' }, { name: '食品饮料' }, { name: '电脑办公' }, { name: '个护清洁' }, { name: '女装' }, { name: '宠物' }, { name: '爱车' }, { name: '箱包工具' }, { name: '男鞋' }],
     modelList: []
   },
 
@@ -18,6 +19,7 @@ Page({
    */
   onLoad(options) {
     this.initData();
+    this.initWaterFlowData();
   },
 
   /**
@@ -60,17 +62,26 @@ Page({
    */
   async initData() {
     // 轮播图
-    const carouselList = await Carousel.getCarouselList();
+    let carouselList = await Carousel.getCarouselList();
 
     // 分类
-    const categoryList = await Category.getTopCategoryList();
-    categoryList.unshift({name:'首页'});
+    let categoryList = await Category.getTopCategoryList();
+    categoryList.unshift({ id: -1, name: '首页' });
 
     // 设置数据
     this.setData({
       carouselList: carouselList,
       categoryList: categoryList
     });
+  },
+
+  async initWaterFlowData() {
+    // 瀑布流数据
+    let itemPaging = Item.getItemPaging();
+    let pagingResult = await itemPaging.next();
+    if (pagingResult) {
+      wx.lin.renderWaterFlow(pagingResult.list);
+    }
   }
 
 });

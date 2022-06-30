@@ -68,4 +68,6 @@
       </view>
     </l-grid-item>
   </l-grid>
+  <!-- 瀑布流 -->
+  <l-water-flow generic:l-water-flow-item="my-water-flow-item"></l-water-flow>
 </view>

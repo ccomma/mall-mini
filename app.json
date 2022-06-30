@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/home/home"
+    "pages/home/home",
+    "components/water-flow-item"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,6 +18,8 @@
     "l-button": "/miniprogram_npm/lin-ui/button/index",
     "l-segment": "/miniprogram_npm/lin-ui/segment/index",
     "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
-    "l-card": "/miniprogram_npm/lin-ui/card/index"
+    "l-card": "/miniprogram_npm/lin-ui/card/index",
+    "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
+    "my-water-flow-item": "/components/water-flow-item/water-flow-item"
   }
 }
