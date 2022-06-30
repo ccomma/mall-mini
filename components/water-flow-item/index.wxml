@@ -1,5 +1,7 @@
 <view class="container">
-  <image src="{{data.image}}" />
-  <text>{{data.name}}</text>
-  <text>{{data.price}}</text>
+  <image mode="widthFix" class="img" src="{{data.image}}" />
+  <view class="content-container">
+    <text class="title">{{data.name}}</text>
+    <l-price value="{{data.price}}" unit-size="19" value-size="34" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal"></l-price>
+  </view>
 </view>

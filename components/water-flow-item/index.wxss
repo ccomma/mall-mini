@@ -1,2 +1,30 @@
 .container {
+  width: 345rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 22rpx;
+}
+.img {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+}
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 18rpx;
+}
+.title {
+  width: 301rpx;
+  color: #333;
+  font-weight: bold;
+  font-size: 25rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+  margin-bottom: 18rpx;
+}
+.price-decimal {
+  font-size: 19rpx;
 }

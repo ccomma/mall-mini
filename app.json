@@ -7,7 +7,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
@@ -19,6 +20,8 @@
     "l-segment": "/miniprogram_npm/lin-ui/segment/index",
     "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
     "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
-    "my-water-flow-item": "/components/water-flow-item/index"
+    "my-water-flow-item": "/components/water-flow-item/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index"
   }
 }

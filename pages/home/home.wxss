@@ -1,25 +1,42 @@
 /* pages/home/home.wxss */
 
+.container {
+  padding: 22rpx 22rpx 0;
+}
+
+/* 搜索 */
+.search-bar-container {
+  padding: 0 !important;
+}
+
 /* 分类 */
+.category {
+  /* margin-bottom: 22rpx; */
+}
 .category-item {
-  margin: 0 20rpx;
+  margin: 0 22rpx;
 }
 
 /* 轮播图 */
 .top-theme {
   width: 100%;
   height: 300rpx;
+  border-radius: 10px;
   display: flex;
-  margin-bottom: 16rpx;
+  margin-bottom: 22rpx;
 }
 
 /* 宫格模块 */
 .grid {
-  padding: 0 12rpx 16rpx 0;
-  margin-bottom: 16rpx;
 }
 .grid-item {
-  padding: 16rpx 0 0 16rpx !important;
+  padding: 0 0 22rpx 0 !important;
+}
+.grid-item-odd {
+  padding-right: 11rpx !important;
+}
+.grid-item-even {
+  padding-left: 11rpx !important;
 }
 .grid-model {
   background-color: #fff;
@@ -46,5 +63,4 @@
 
 /* 瀑布流 */
 .water-flow {
-
 }
