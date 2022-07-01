@@ -9,5 +9,12 @@ Component({
       // 数据处理
     }
   },
-  methods: {}
+  methods: {
+    onItemTap(event) {
+      let pid = event.currentTarget.dataset.pid;
+      wx.navigateTo({
+        url: `/pages/item-detail/item-detail?pid=${pid}`
+      })
+    }
+  }
 })

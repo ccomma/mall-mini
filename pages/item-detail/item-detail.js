@@ -1,4 +1,4 @@
-// components/water-flow-item.js
+// pages/item-detail/item-detail.js
 Page({
 
   /**

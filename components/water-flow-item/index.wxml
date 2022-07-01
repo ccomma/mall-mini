@@ -1,4 +1,4 @@
-<view class="container">
+<view bind:tap="onItemTap" data-pid="{{data.id}}" class="container">
   <image mode="widthFix" class="img" src="{{data.image}}" />
   <view class="content-container">
     <text class="title">{{data.name}}</text>
