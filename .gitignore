@@ -2,6 +2,7 @@ miniprogram_npm
 node_modules
 .vscode
 .history
+.idea
 
 yarn.lock
 yarn-error.lock
