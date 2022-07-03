@@ -1,8 +1,8 @@
 // pages/home/home.js
 
-import { Carousel } from "../../model/carousel";
-import { Category } from "../../model/category";
-import { Item } from "../../model/item";
+import {Carousel} from "../../models/carousel";
+import {Category} from "../../models/category";
+import {Item} from "../../models/item";
 
 Page({
   /**
@@ -26,8 +26,7 @@ Page({
     this.initData();
 
     // 瀑布流数据
-    let itemPaging = Item.getItemPaging();
-    this.data.itemPaging = itemPaging;
+    this.data.itemPaging = Item.getPaging();
     this.renderWaterFlowData();
   },
 
@@ -73,10 +72,10 @@ Page({
    */
   async initData() {
     // 轮播图
-    let carouselList = await Carousel.getCarouselList();
+    let carouselList = await Carousel.getList();
 
     // 分类
-    let categoryList = await Category.getTopCategoryList();
+    let categoryList = await Category.getTopList();
     categoryList.unshift({ id: -1, name: '首页' });
 
     // 设置数据

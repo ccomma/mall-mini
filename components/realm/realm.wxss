@@ -1,0 +1,13 @@
+page {
+  background-color: #fff;
+}
+.container {
+  padding: 30rpx
+}
+.item-view {}
+
+.scroll-view {
+  height: 700rpx;
+}
+
+.btn-view {}

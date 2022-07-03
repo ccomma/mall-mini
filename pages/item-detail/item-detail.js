@@ -1,18 +1,93 @@
-// pages/item-detail/item-detail.js
+import { Item } from "../../models/item";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    item: {
+      skuList: [{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 1,
+          value: '金属灰'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 4,
+          value: '七龙珠'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 7,
+          value: '小号 S'
+        }]
+      },{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 2,
+          value: '青芒色'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 5,
+          value: '灌篮高手'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 8,
+          value: '中号 M'
+        }]
+      },{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 2,
+          value: '青芒色'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 6,
+          value: '圣斗士'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 9,
+          value: '大号 L'
+        }]
+      },{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 3,
+          value: '橘黄色'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 4,
+          value: '七龙珠'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 7,
+          value: '小号 S'
+        }]
+      }]
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  async onLoad(options) {
+    let pid = options.pid;
+    // let item = await Item.getWithSkuList(pid);
+    // this.setData({
+    //   item: item
+    // });
   },
 
   /**

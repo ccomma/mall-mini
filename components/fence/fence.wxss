@@ -1,0 +1,18 @@
+.container {
+  margin-bottom: 50rpx;
+}
+.row-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.title {
+  color: #333;
+  font-size: 27rpx;
+  font-weight: 600;
+  margin-bottom: 40rpx;
+}
+.cell {
+  margin-right: 22rpx;
+}

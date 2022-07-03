@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="title-container">
+    <text>{{cell.title}}</text>
+  </view>
+</view>

@@ -2,10 +2,12 @@ import { config } from "../config/config";
 import { promisic } from "./util";
 
 class Http {
+
     /**
-     * http request
-     * @param {*} param0 
-     * @returns 
+     * 发起 http 请求
+     * 
+     * @param {{string, object, string}} param 
+     * @returns 数据
      */
     static async request({ url, data = undefined, method = 'GET' }) {
         let result = await promisic(wx.request)({
@@ -23,6 +25,7 @@ class Http {
 
         return result.data.data;
     }
+
 }
 
 export {

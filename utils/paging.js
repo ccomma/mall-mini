@@ -1,22 +1,39 @@
+import { PageResult } from "../result/page-result";
 import { Http } from "./http";
 
 class Paging {
 
+    /** 页码 */
     pageIndex;
+
+    /** 页大小 */
     pageSize;
+
+    /** 请求参数 */
     request;
+
     /**
      * 利用锁防抖
      * true：锁未被占有；false：锁已被占有
      */
     lock = false;
-    /**
-     * 是否还有下一页
-     */
+
+    /** 是否还有下一页 */
     hasNext = true;
-    // 数据累加器
+
+    /** 数据累加器 */
     accumulator = [];
 
+
+    /**
+     * 实例化方法
+     * 取代构造函数
+     * 
+     * @param {object} request   请求参数
+     * @param {string} pageIndex 页码，默认为 1
+     * @param {string} pageSize  页大小，默认为 10
+     * @returns 
+     */
     static instance(request, pageIndex = 1, pageSize = 10) {
         let result = new Paging();
         result.request = request;
@@ -25,10 +42,23 @@ class Paging {
         return result;
     }
 
+    /**
+     * 实例化方法，从第一页开始请求
+     * 取代构造函数
+     * 
+     * @param {object} request  请求参数
+     * @param {string} pageSize 页大小，默认为 10
+     * @returns 
+     */
     static instanceStart(request, pageSize = 10) {
         return Paging.instance(request, 1, pageSize);
     }
 
+    /**
+     * 请求下一页
+     * 
+     * @returns 响应数据
+     */
     async next() {
         if (!this.hasNext || !this._getLock()) {
             return;
@@ -42,7 +72,12 @@ class Paging {
         return data;
     }
 
-    // TODO: 分页数据 pagingData 格式尚未明确
+    /**
+     * 实际请求下一页方法
+     * TODO: 分页数据 pagingData 格式尚未明确
+     * 
+     * @returns 响应数据
+     */
     async _doNext() {
         this._setPageParam();
         let pagingData = await Http.request(this.request);
@@ -52,12 +87,7 @@ class Paging {
 
         // 无数据，返回空
         if (pagingData.total === 0) {
-            return {
-                isEmpty: true,
-                list: [],
-                hasNext: false,
-                accumulator: []
-            };
+            return PageResult.empty();
         }
 
         // 是否有下一页
@@ -67,24 +97,25 @@ class Paging {
         }
 
         // 数据累加
-        this._accumulate(pagingData.list);
+        this.accumulator = this.accumulator.concat(pagingData.list);
 
-        return {
-            isEmpty: false,
-            list: pagingData.list,
-            hasNext: this.hasNext,
-            accumulator: this.accumulator
-        }
+        return PageResult.of(pagingData.list, this.accumulator);
     }
 
-    _accumulate(list) {
-        this.accumulator = this.accumulator.concat(list);
-    }
-
+    /**
+     * 是否存在下一页
+     * 
+     * @param {string} pageIndex 页码
+     * @param {string} totalPage 页大小
+     * @returns 
+     */
     _hasNext(pageIndex, totalPage) {
         return pageIndex < totalPage;
     }
 
+    /**
+     * set 分页参数
+     */
     _setPageParam() {
         if (!this.request.data) {
             Object.defineProperties(this.request, {
@@ -93,7 +124,7 @@ class Paging {
                 }
             });
         }
-        
+
         Object.defineProperties(this.request.data, {
             pageIndex: {
                 value: this.pageIndex
@@ -101,12 +132,12 @@ class Paging {
             pageSize: {
                 value: this.pageSize
             }
-        })
-
+        });
     }
 
     /**
      * 拿到锁
+     * 
      * @returns true：成功；false：失败
      */
     _getLock() {

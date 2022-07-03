@@ -1,2 +1,2 @@
-<!--pages/item-detail/item-detail.wxml-->
-<text>pages/item-detail/item-detail.wxml</text>
+
+<my-realm item="{{item}}"></my-realm>

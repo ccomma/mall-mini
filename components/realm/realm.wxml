@@ -1,0 +1,17 @@
+<view class="container">
+  <!-- 商品属性 -->
+  <view class="item-view">
+    <image scr="" />
+  </view>
+  <!-- fences -->
+  <scroll-view class="scroll-view" scroll-y="{{true}}">
+    <block wx:for="{{fences}}" wx:key="index">
+      <my-fence fence="{{item}}"></my-fence>
+    </block>
+    <view class="counter-container">
+      <l-counter></l-counter>
+    </view>
+  </scroll-view>
+  <!-- 确定 -->
+  <view class="btn-view">btn</view>
+</view>
