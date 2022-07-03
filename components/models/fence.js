@@ -1,4 +1,4 @@
-import { ArrayUtil } from "../utils/array-util";
+import { ArrayUtil } from "../../utils/array-util";
 import { Cell } from "./cell";
 
 class Fence {
@@ -42,7 +42,7 @@ class Fence {
         // build cells
         let cells = this.specs.map(spec => Cell.instance(spec));
         // 去重
-        this.cells = ArrayUtil.distinctObjectArray(cells, cell => cell.id);
+        this.cells = ArrayUtil.distinctObjectArray(cells, cell => cell.valueId);
     }
 
 }

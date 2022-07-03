@@ -21,6 +21,9 @@ Component({
       this.setData({
         fences: fenceGroup.fences
       });
+    },
+    onCellTap(event) {
+      let cell = event.detail.cell;
     }
   }
 })

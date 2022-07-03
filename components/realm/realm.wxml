@@ -6,7 +6,7 @@
   <!-- fences -->
   <scroll-view class="scroll-view" scroll-y="{{true}}">
     <block wx:for="{{fences}}" wx:key="index">
-      <my-fence fence="{{item}}"></my-fence>
+      <my-fence bind:celltap="onCellTap" fence="{{item}}"></my-fence>
     </block>
     <view class="counter-container">
       <l-counter></l-counter>

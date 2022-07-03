@@ -1,11 +1,18 @@
+import { CellStatus } from "../../constants/common-constant";
 
 class Cell {
 
+    /** 属性id */
+    keyId;
+
     /** 属性值id */
-    id
+    valueId;
 
     /** 属性值名称 */
-    title;
+    value;
+
+    /** 状态，默认未选中 */
+    status = CellStatus.UNSELECT;
 
 
     /**
@@ -16,8 +23,9 @@ class Cell {
      */
     static instance(spec) {
         let cell = new Cell();
-        cell.id = spec.valueId;
-        cell.title = spec.value;
+        cell.keyId = spec.keyId;
+        cell.valueId = spec.valueId;
+        cell.value = spec.value;
         return cell;
     }
 
