@@ -29,9 +29,19 @@ class Cell {
         return cell;
     }
 
-    hasSelected(selectedCellMap) {
-        let selectedCell = selectedCellMap.get(this.keyId);
-        return selectedCell && selectedCell.valueId === this.valueId
+    setStatus(selectedCells, availableCells) {
+        // 选中
+        if (this.isInclude(selectedCells)) {
+            this.status = CellStatus.SELECTED;
+            return true;
+        }
+
+        // 是否禁止
+        this.status = this.isInclude(availableCells) ? CellStatus.UNSELECT : CellStatus.FORBIDDEN;
+    }
+
+    isInclude(cells) {
+        return cells.some(cell => this.equals(cell));
     }
 
     equals(cell) {

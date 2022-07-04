@@ -19,9 +19,9 @@ class Fence {
      * 实例化
      * 
      * @param {[{
-     *          keyId:   属性id; 
-     *          key:     属性名称; 
-     *          valueId: 属性值id; 
+     *          keyId:   属性id;
+     *          key:     属性名称;
+     *          valueId: 属性值id;
      *          value:   属性值名称
      * }]} specs 转置后的规格数组
      * @return {Fence} 栅栏
@@ -36,6 +36,20 @@ class Fence {
     }
 
     /**
+     * 计算该 fence 中 cells 的状态
+     * 
+     * @param {[]}     skuList       sku 数组
+     * @param {[Cell]} selectedCells 已选择的 cell 数组
+     */
+    calculateCellStatus(skuList, selectedCells) {
+        // 1.获取该 fence 的非禁止的 cell 数组
+        let availableCells = this._getAvailableCells(skuList, selectedCells);
+
+        // 2.设置 cell 状态
+        this.cells.forEach(cell => cell.setStatus(selectedCells, availableCells));
+    }
+
+    /**
      * 初始化 cells
      */
     _initCells() {
@@ -43,6 +57,32 @@ class Fence {
         let cells = this.specs.map(spec => Cell.instance(spec));
         // 去重
         this.cells = ArrayUtil.distinctObjectArray(cells, cell => cell.valueId);
+    }
+
+    /**
+     * 获取该 fence 内非禁止的（可选择的）cell 数组
+     * 
+     * @param   {[]}     skuList       sku 数组
+     * @param   {[Cell]} selectedCells 已选择的 cell 数组
+     * @returns {[Cell]} 非禁止的（可选择的）cell 数组
+     */
+    _getAvailableCells(skuList, selectedCells) {
+        // 其他 fence 的已选 cell
+        let otherSelectedCells = selectedCells.filter(sCell => sCell.keyId !== this.id);
+
+        // 这一行命中的 skuList
+        let availableSkuList = skuList.filter(sku =>
+            // 每个已选择的 cell 都得在一个 sku 中命中
+            otherSelectedCells.every(sCell => sku.specs.some(spec => sCell.equals(spec)))
+        );
+
+        // 该行非禁止的 cells
+        let availableCells = availableSkuList.flatMap(sku => sku.specs)
+            .filter(spec => spec.keyId === this.id)
+            .map(spec => Cell.instance(spec));
+
+        // 去重
+        return ArrayUtil.distinctObjectArray(availableCells, cell => cell.valueId);
     }
 
 }
