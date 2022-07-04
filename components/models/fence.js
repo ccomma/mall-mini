@@ -81,7 +81,7 @@ class Fence {
             .filter(spec => spec.keyId === this.id)
             .map(spec => Cell.instance(spec));
 
-        // 去重
+        // 去重，不去重也不影响
         return ArrayUtil.distinctObjectArray(availableCells, cell => cell.valueId);
     }
 

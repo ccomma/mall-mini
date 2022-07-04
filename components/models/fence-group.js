@@ -12,7 +12,7 @@ class FenceGroup {
     /** 属性行列表 */
     fences = [];
 
-    /** 
+    /**
      * 已选择 cell map
      * key: cell.keyId; value: cell
      */

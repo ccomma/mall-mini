@@ -33,11 +33,18 @@ class Cell {
         // 选中
         if (this.isInclude(selectedCells)) {
             this.status = CellStatus.SELECTED;
-            return true;
+            return;
         }
 
-        // 是否禁止
-        this.status = this.isInclude(availableCells) ? CellStatus.UNSELECT : CellStatus.FORBIDDEN;
+        // 可用
+        if (this.isInclude(availableCells)) {
+            this.status = CellStatus.UNSELECT;
+            return;
+        }
+
+        // 不可用（禁止）
+        this.status = CellStatus.FORBIDDEN;
+        return;
     }
 
     isInclude(cells) {

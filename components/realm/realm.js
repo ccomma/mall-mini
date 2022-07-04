@@ -18,16 +18,14 @@ Component({
     }
   },
   methods: {
+    onCellTap(event) {
+      this.data.fenceGroup.select(Cell.instance(event.detail.cell));
+      this.bindInitData(this.data.fenceGroup);
+    },
     bindInitData(fenceGroup) {
       this.setData({
         fenceGroup: fenceGroup
       });
-    },
-    onCellTap(event) {
-      let cell = event.detail.cell;
-      let tapCell = Cell.instance({keyId: cell.keyId, valueId: cell.valueId});
-      this.data.fenceGroup.select(tapCell);
-      this.bindInitData(this.data.fenceGroup);
     }
   }
 })
