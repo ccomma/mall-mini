@@ -1,3 +1,5 @@
+import { CellStatus } from "../../constants/common-constant";
+
 Component({
   data: {},
   properties: {
@@ -5,9 +7,14 @@ Component({
   },
   methods: {
     onTap(event) {
+      let cell = this.properties.cell;
+      if (cell.status === CellStatus.FORBIDDEN) {
+        return;
+      }
+      
       // 子组件向父组件回传参数
       this.triggerEvent('celltap', {
-        cell: this.properties.cell
+        cell: cell
       }, {
         // 开启冒泡
         bubbles: true,

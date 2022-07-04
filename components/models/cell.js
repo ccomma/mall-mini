@@ -14,7 +14,7 @@ class Cell {
     /** 状态，默认未选中 */
     status = CellStatus.UNSELECT;
 
-
+    
     /**
      * 构建一个 Cell 对象
      * 
@@ -29,6 +29,14 @@ class Cell {
         return cell;
     }
 
+    hasSelected(selectedCellMap) {
+        let selectedCell = selectedCellMap.get(this.keyId);
+        return selectedCell && selectedCell.valueId === this.valueId
+    }
+
+    equals(cell) {
+        return this.keyId === cell.keyId && this.valueId === cell.valueId;
+    }
 }
 
 export {
