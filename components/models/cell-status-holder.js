@@ -25,14 +25,20 @@ class CellStatusHolder {
      * @param {Cell} cell cell
      */
     static reverseSelect(cell) {
-        // 原来已选择该cell，取消选择
+        // 原来已选择该 cell，取消选择
         if (this.isSelected(cell)) {
             this.deleteSelect(cell.keyId);
-            return true;
+            return;
         }
 
         // 非反选情况直接重新 set 覆盖
-        this.putSelect(cell);
+        if (this.isUnselect(cell)) {
+            this.putSelect(cell);
+            return;
+        }
+
+        // 禁用状态不处理
+        return;
     }
 
     static getStatus(cell) {
