@@ -17,23 +17,6 @@ class CellStatusHolder {
 
 
     /**
-     * 反转选择
-     * 若原已选中，取消选择；若原未选中，则选中
-     * 
-     * @param {Cell} cell cell
-     */
-    static reverseSelect(cell) {
-        // 原来已选择该cell，取消选择
-        if (this.isSelected(cell)) {
-            this.unselect(cell.keyId);
-            return true;
-        }
-
-        // 非反选情况直接重新 set 覆盖
-        this.select(cell);
-    }
-
-    /**
      * 选中
      * 
      * @param {Cell} cell cell
@@ -49,6 +32,23 @@ class CellStatusHolder {
      */
     static unselect(keyId) {
         this.selectedCellMap.delete(keyId);
+    }
+
+    /**
+     * 反选
+     * 若原已选中，取消选择；若原未选中，则选中
+     * 
+     * @param {Cell} cell cell
+     */
+    static reverseSelect(cell) {
+        // 原来已选择该cell，取消选择
+        if (this.isSelected(cell)) {
+            this.unselect(cell.keyId);
+            return true;
+        }
+
+        // 非反选情况直接重新 set 覆盖
+        this.select(cell);
     }
 
     /**

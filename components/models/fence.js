@@ -42,7 +42,7 @@ class Fence {
      * @param {[]} skuList sku 数组
      */
     calculateCellStatus(skuList) {
-        // 1.获取该 fence 的非禁止状态的 cell 数组
+        // 1.获取该 fence 中的非禁止状态的 cell 数组
         let availableCells = this._getAvailableCells(skuList);
 
         // 2.设置 cell 状态

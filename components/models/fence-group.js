@@ -33,11 +33,11 @@ class FenceGroup {
      * 
      * @param {[Cell]} tapCells 点击的 cell 数组
      */
-    select(tapCells) {
-        // 调整已选择 cell 的 map
+    reverseSelect(tapCells) {
         tapCells.forEach(tapCell => {
+            // 记录反转后的选中列表
             CellStatusHolder.reverseSelect(tapCell);
-        })
+        });
         // 重新计算全部 cell 的状态
         this._calculateStatus();
     }
