@@ -30,33 +30,15 @@ class Cell {
         return cell;
     }
 
-    setStatus(availableCells) {
-        // 选中
-        if (CellStatusHolder.isSelected(this)) {
-            this.status = CellStatusConstant.SELECTED;
-            return;
-        }
-
-        // 可用
-        if (this.isInclude(availableCells)) {
-            this.status = CellStatusConstant.UNSELECT;
-            return;
-        }
-
-        // 不可用（禁止）
-        this.status = CellStatusConstant.FORBIDDEN;
-        return;
-    }
-
     /**
      * 是否存在于某个数组中
      * 
-     * @param {[{keyId,valueId}]} cells cell 数组
-     * @returns 
+     * @param   {[{keyId,valueId}]} cells cell 数组
+     * @returns 是否存在
      */
-    isInclude(cells) {
-        return cells.some(cell => this.equals(cell));
-    }
+    // isInclude(cells) {
+    //     return cells.some(cell => this.equals(cell));
+    // }
 
     /**
      * 是否与另一个 cell 相等
@@ -64,8 +46,17 @@ class Cell {
      * @param {Cell} cell cell
      * @returns 
      */
-    equals(cell) {
-        return this.keyId === cell.keyId && this.valueId === cell.valueId;
+    // equals(cell) {
+    //     return this.keyId === cell.keyId && this.valueId === cell.valueId;
+    // }
+
+    /**
+     * 获取唯一 id
+     * 
+     * @returns 唯一 id
+     */
+    unionId() {
+        return this.keyId + CommonSignConstant.UNDERLINE + this.valueId;
     }
 
 }

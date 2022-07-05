@@ -34,12 +34,22 @@ class FenceGroup {
      * @param {[Cell]} tapCells 点击的 cell 数组
      */
     reverseSelect(tapCells) {
+        // 1.反转已选
         tapCells.forEach(tapCell => {
-            // 记录反转后的选中列表
             CellStatusHolder.reverseSelect(tapCell);
         });
-        // 重新计算全部 cell 的状态
-        this._calculateStatus();
+
+        // 2.初始化未选
+        CellStatusHolder.clearUnselect();
+        this.fences.forEach(fence => {
+            // 重新添加这行的未选 cell
+            CellStatusHolder.initUnselect(fence.id, this.skuList);
+        });
+
+        // 3.重新设置全部 cell 状态
+        this.fences.flatMap(fence => fence.cells)
+            .forEach(cell => cell.status = CellStatusHolder.getStatus(cell));
+
     }
 
     /**
@@ -50,14 +60,6 @@ class FenceGroup {
         let specs = skuList.map(sku => sku.specs);
         // 转置矩阵，把每一行转换为 fence
         this.fences = Matrix.transpose(specs).map(row => Fence.instance(row));
-    }
-
-    /**
-     * 计算全部 cell 的状态
-     */
-    _calculateStatus() {
-        // 计算每个 fence 中的所有 cell 状态
-        this.fences.forEach(fence => fence.calculateCellStatus(this.skuList));
     }
 
 }
