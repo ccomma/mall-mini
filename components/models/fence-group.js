@@ -29,13 +29,18 @@ class FenceGroup {
         let fenceGroup = new FenceGroup();
         fenceGroup.item = item;
         fenceGroup.skuList = item.skuList;
-        fenceGroup._initFences();
+        fenceGroup._initFences(item.skuList);
         return fenceGroup;
     }
 
-    select(tapCell) {
+    /**
+     * 点击 cell，更新全部 cell 状态
+     * 
+     * @param {[Cell]} tapCells 点击的 cell 数组
+     */
+    select(tapCells) {
         // 调整已选择 cell 的 map
-        this._resetSelectedCellMap(tapCell);
+        this._resetSelectedCellMap(tapCells);
         // 重新计算全部 cell 的状态
         this._calculateStatus();
     }
@@ -43,23 +48,26 @@ class FenceGroup {
     /**
      * 初始化 fences
      */
-    _initFences() {
+    _initFences(skuList) {
         // 获取规格矩阵
-        let specs = this.skuList.map(sku => sku.specs);
+        let specs = skuList.map(sku => sku.specs);
         // 转置矩阵，把每一行转换为 fence
         this.fences = Matrix.transpose(specs).map(row => Fence.instance(row));
     }
 
-    _resetSelectedCellMap(tapCell) {
-        // 原来已选择该cell，取消选择
+    _resetSelectedCellMap(tapCells) {
         let selectedCells = [...this.selectedCellMap.values()];
-        if (tapCell.isInclude(selectedCells)) {
-            this.selectedCellMap.delete(tapCell.keyId);
-        }
-        // 非反选情况直接重新 set 覆盖
-        else {
+        
+        tapCells.forEach(tapCell => {
+            // 原来已选择该cell，取消选择
+            if (tapCell.isInclude(selectedCells)) {
+                this.selectedCellMap.delete(tapCell.keyId);
+                return true;
+            }
+
+            // 非反选情况直接重新 set 覆盖
             this.selectedCellMap.set(tapCell.keyId, tapCell);
-        }
+        });
     }
 
     /**
@@ -67,7 +75,7 @@ class FenceGroup {
      */
     _calculateStatus() {
         let selectedCells = [...this.selectedCellMap.values()];
-        
+
         // 计算每个 fence 中的所有 cell 状态
         this.fences.forEach(fence => fence.calculateCellStatus(this.skuList, selectedCells));
     }
