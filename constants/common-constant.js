@@ -2,7 +2,7 @@
 /**
  * 规格选项状态
  */
-const CellStatus = {
+const CellStatusConstant = {
   /**
    * 待选择
    */
@@ -17,6 +17,14 @@ const CellStatus = {
   FORBIDDEN: 2
 }
 
+const CommonSignConstant = {
+  /**
+   * 下划线
+   */
+  UNDERLINE: '_'
+}
+
 export {
-  CellStatus
+  CellStatusConstant,
+  CommonSignConstant
 }

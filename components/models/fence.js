@@ -1,5 +1,6 @@
 import { ArrayUtil } from "../../utils/array-util";
 import { Cell } from "./cell";
+import { CellStatusHolder } from "./cell-status-holder";
 
 class Fence {
     /** 原始规格数组 */
@@ -38,15 +39,14 @@ class Fence {
     /**
      * 计算该 fence 中 cells 的状态
      * 
-     * @param {[]}     skuList       sku 数组
-     * @param {[Cell]} selectedCells 已选择的 cell 数组
+     * @param {[]} skuList sku 数组
      */
-    calculateCellStatus(skuList, selectedCells) {
-        // 1.获取该 fence 的非禁止的 cell 数组
-        let availableCells = this._getAvailableCells(skuList, selectedCells);
+    calculateCellStatus(skuList) {
+        // 1.获取该 fence 的非禁止状态的 cell 数组
+        let availableCells = this._getAvailableCells(skuList);
 
         // 2.设置 cell 状态
-        this.cells.forEach(cell => cell.setStatus(selectedCells, availableCells));
+        this.cells.forEach(cell => cell.setStatus(availableCells));
     }
 
     /**
@@ -62,13 +62,12 @@ class Fence {
     /**
      * 获取该 fence 内非禁止的（可选择的）cell 数组
      * 
-     * @param   {[]}     skuList       sku 数组
-     * @param   {[Cell]} selectedCells 已选择的 cell 数组
+     * @param   {[]}     skuList sku 数组
      * @returns {[Cell]} 非禁止的（可选择的）cell 数组
      */
-    _getAvailableCells(skuList, selectedCells) {
+    _getAvailableCells(skuList) {
         // 其他 fence 的已选 cell
-        let otherSelectedCells = selectedCells.filter(sCell => sCell.keyId !== this.id);
+        let otherSelectedCells = CellStatusHolder.selectedList().filter(sCell => sCell.keyId !== this.id);
 
         // 这一行命中的 skuList
         let availableSkuList = skuList.filter(sku =>

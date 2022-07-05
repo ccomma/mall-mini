@@ -1,4 +1,4 @@
-import { CellStatus } from "../../constants/common-constant";
+import { CellStatusConstant } from "../../constants/common-constant";
 
 Component({
   data: {},
@@ -8,7 +8,7 @@ Component({
   methods: {
     onTap(event) {
       let cell = this.properties.cell;
-      if (cell.status === CellStatus.FORBIDDEN) {
+      if (cell.status === CellStatusConstant.FORBIDDEN) {
         return;
       }
       
