@@ -4,10 +4,10 @@ import { Fence } from "./fence";
 class FenceGroup {
 
     /** 商品spu */
-    item = {};
+    // item = {};
 
     /** sku列表 */
-    skuList = [];
+    // skuList = [];
 
     /** 属性行列表 */
     fences = [];
@@ -21,8 +21,8 @@ class FenceGroup {
      */
     static instance(item) {
         let fenceGroup = new FenceGroup();
-        fenceGroup.item = item;
-        fenceGroup.skuList = item.skuList;
+        // fenceGroup.item = item;
+        // fenceGroup.skuList = item.skuList;
         fenceGroup._initFences(item.skuList);
         return fenceGroup;
     }

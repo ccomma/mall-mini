@@ -48,7 +48,7 @@ class CellStatusHolder {
      * 是否已选择
      * keyId 和 valueId 都得相等
      * 
-     * @param {{Cell}} cell cell
+     * @param {{keyId, valueId}} cell cell
      * @returns true：已选择
      */
     static isSelected(cell) {
@@ -105,7 +105,7 @@ class CellStatusHolder {
     /**
      * unselectMap 中删除 cell
      * 
-     * @param {{keyId, valueId}} cell cell
+     * @param {{Cell}} cell cell
      */
     static deleteUnselect(cell) {
         this.unselectMap.delete(cell.unionId());

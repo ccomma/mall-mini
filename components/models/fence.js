@@ -1,6 +1,5 @@
 import { ArrayUtil } from "../../utils/array-util";
 import { Cell } from "./cell";
-import { CellStatusHolder } from "./cell-status-holder";
 
 class Fence {
     /** 原始规格数组 */

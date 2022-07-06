@@ -1,5 +1,4 @@
 import { CellStatusConstant, CommonSignConstant } from "../../constants/common-constant";
-import { CellStatusHolder } from "./cell-status-holder";
 
 class Cell {
 
@@ -29,26 +28,6 @@ class Cell {
         cell.value = spec.value;
         return cell;
     }
-
-    /**
-     * 是否存在于某个数组中
-     * 
-     * @param   {[{keyId,valueId}]} cells cell 数组
-     * @returns 是否存在
-     */
-    // isInclude(cells) {
-    //     return cells.some(cell => this.equals(cell));
-    // }
-
-    /**
-     * 是否与另一个 cell 相等
-     * 
-     * @param {Cell} cell cell
-     * @returns 
-     */
-    // equals(cell) {
-    //     return this.keyId === cell.keyId && this.valueId === cell.valueId;
-    // }
 
     /**
      * 获取唯一 id

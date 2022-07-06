@@ -4,13 +4,16 @@ import { CellStatusHolder } from "./cell-status-holder";
 
 class CellStatusHandler {
 
+    skuList = [];
+
     fenceGroup = {};
     // fenceMap = new Map();
     // cellMap = new Map();
 
 
-    static instance(fenceGroup) {
+    static instance(fenceGroup, skuList) {
         let handler = new CellStatusHandler();
+        handler.skuList = skuList;
         handler.fenceGroup = fenceGroup;
 
         // init map
@@ -117,7 +120,7 @@ class CellStatusHandler {
         let otherSelectedCells = CellStatusHolder.selectedList().filter(sCell => sCell.keyId !== keyId);
 
         // 筛选出其他 fence 已选规格的 sku
-        return this.fenceGroup.skuList.filter(sku => sku.stock > 0 && this._hasAllSpec(sku, otherSelectedCells))
+        return this.skuList.filter(sku => sku.stock > 0 && this._hasAllSpec(sku, otherSelectedCells))
             // 这些 sku 中 keyId 是该 fence 的 spec 即为该 fence 中未被禁用的 cell
             .flatMap(sku => sku.specs)
             // 过滤掉已选择的 spec
