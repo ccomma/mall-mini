@@ -17,17 +17,21 @@ Component({
       // 获取 fenceGroup
       let fenceGroup = FenceGroup.instance(item);
 
-      // 如果只有一个 sku，直接默认选择这个 sku
-      if (item.skuList.length === 1) {
-        let tapCells = item.skuList[0].specs.map(spec => Cell.instance(spec));
-        fenceGroup.reverseSelect(tapCells);
-      }
+      this.defaultSelect(fenceGroup)
 
       // 数据绑定
       this.bindInitData(fenceGroup);
     }
   },
   methods: {
+    defaultSelect(fenceGroup) {
+      // 只有一个属性值得属性默认需要选中
+      let oneCells = fenceGroup.fences
+        .filter(fence => fence.cells.length === 1)
+        .flatMap(fence => fence.cells);
+
+      fenceGroup.reverseSelect(oneCells);
+    },
     /**
      * 规格点击事件
      * 

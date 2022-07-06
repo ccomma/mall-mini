@@ -23,6 +23,11 @@ Page({
           key: '尺寸',
           valueId: 7,
           value: '小号 S'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
         }]
       },{
         specs: [{
@@ -40,6 +45,11 @@ Page({
           key: '尺寸',
           valueId: 8,
           value: '中号 M'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
         }]
       },{
         specs: [{
@@ -57,6 +67,11 @@ Page({
           key: '尺寸',
           valueId: 9,
           value: '大号 L'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
         }]
       },{
         specs: [{
@@ -74,6 +89,11 @@ Page({
           key: '尺寸',
           valueId: 7,
           value: '小号 S'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
         }]
       }]
     }

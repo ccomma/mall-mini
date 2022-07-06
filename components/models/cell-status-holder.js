@@ -25,19 +25,19 @@ class CellStatusHolder {
      * @param {Cell} cell cell
      */
     static reverseSelect(cell) {
-        // 原来已选择该 cell，取消选择
+        // 原来已选择该 cell => 取消选择
         if (this.isSelected(cell)) {
             this.deleteSelect(cell.keyId);
             return;
         }
 
-        // 非反选情况直接重新 set 覆盖
-        if (this.isUnselect(cell)) {
+        // 未选 || 首次点击时所有 map 都为空，不存在禁用 => 添加为已选
+        if (this.isUnselect(cell) || this.selectedMap.size === 0) {
             this.putSelect(cell);
             return;
         }
 
-        // 禁用状态不处理
+        // 禁用状态 => 不处理
         return;
     }
 
@@ -101,6 +101,7 @@ class CellStatusHolder {
 
     /**
      * 初始化未选 map
+     * ! 逻辑较为复杂，减少调用次数
      * 
      * @param {[]} skuList sku 数组
      */

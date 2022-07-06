@@ -17,7 +17,7 @@ class FenceGroup {
     /**
      * 构建一个 FenceGroup 对象
      * 
-     * @param {object} item item 对象
+     * @param   {object}     item item 对象
      * @returns {FenceGroup} 栅栏组
      */
     static instance(item) {
@@ -49,7 +49,6 @@ class FenceGroup {
         // 3.重新设置全部 cell 状态
         this.fences.flatMap(fence => fence.cells)
             .forEach(cell => cell.status = CellStatusHolder.getStatus(cell));
-
     }
 
     /**
