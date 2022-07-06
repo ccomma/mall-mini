@@ -28,7 +28,8 @@ Page({
           key: '款式',
           valueId: 10,
           value: '短袖'
-        }]
+        }],
+        stock: 100
       },{
         specs: [{
           keyId: 1,
@@ -50,7 +51,8 @@ Page({
           key: '款式',
           valueId: 10,
           value: '短袖'
-        }]
+        }],
+        stock: 100
       },{
         specs: [{
           keyId: 1,
@@ -72,7 +74,8 @@ Page({
           key: '款式',
           valueId: 10,
           value: '短袖'
-        }]
+        }],
+        stock: 100
       },{
         specs: [{
           keyId: 1,
@@ -94,7 +97,54 @@ Page({
           key: '款式',
           valueId: 10,
           value: '短袖'
-        }]
+        }],
+        stock: 100
+      },{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 3,
+          value: '橘黄色'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 4,
+          value: '七龙珠'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 9,
+          value: '大号 L'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
+        }],
+        stock: 0
+      },{
+        specs: [{
+          keyId: 1,
+          key: '颜色',
+          valueId: 11,
+          value: '远峰蓝'
+        },{
+          keyId: 2,
+          key: '图案',
+          valueId: 12,
+          value: '高达'
+        },{
+          keyId: 3,
+          key: '尺寸',
+          valueId: 13,
+          value: '超大号 L'
+        },{
+          keyId: 4,
+          key: '款式',
+          valueId: 10,
+          value: '短袖'
+        }],
+        stock: 0
       }]
     }
   },

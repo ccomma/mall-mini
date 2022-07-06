@@ -1,5 +1,4 @@
 import { Matrix } from "../../utils/matrix";
-import { CellStatusHolder } from "./cell-status-holder";
 import { Fence } from "./fence";
 
 class FenceGroup {
@@ -26,29 +25,6 @@ class FenceGroup {
         fenceGroup.skuList = item.skuList;
         fenceGroup._initFences(item.skuList);
         return fenceGroup;
-    }
-
-    /**
-     * 点击 cell，更新全部 cell 状态
-     * 
-     * @param {[Cell]} tapCells 点击的 cell 数组
-     */
-    reverseSelect(tapCells) {
-        // 1.反转已选
-        tapCells.forEach(tapCell => {
-            CellStatusHolder.reverseSelect(tapCell);
-        });
-
-        // 2.初始化未选
-        CellStatusHolder.clearUnselect();
-        this.fences.forEach(fence => {
-            // 重新添加这行的未选 cell
-            CellStatusHolder.initUnselect(fence.id, this.skuList);
-        });
-
-        // 3.重新设置全部 cell 状态
-        this.fences.flatMap(fence => fence.cells)
-            .forEach(cell => cell.status = CellStatusHolder.getStatus(cell));
     }
 
     /**

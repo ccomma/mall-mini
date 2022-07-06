@@ -18,29 +18,6 @@ class CellStatusHolder {
     static unselectMap = new Map();
 
 
-    /**
-     * 反选
-     * 若原已选中，取消选择；若原未选中，则选中
-     * 
-     * @param {Cell} cell cell
-     */
-    static reverseSelect(cell) {
-        // 原来已选择该 cell => 取消选择
-        if (this.isSelected(cell)) {
-            this.deleteSelect(cell.keyId);
-            return;
-        }
-
-        // 未选 || 首次点击时所有 map 都为空，不存在禁用 => 添加为已选
-        if (this.isUnselect(cell) || this.selectedMap.size === 0) {
-            this.putSelect(cell);
-            return;
-        }
-
-        // 禁用状态 => 不处理
-        return;
-    }
-
     static getStatus(cell) {
         // 选中
         if (CellStatusHolder.isSelected(cell)) {
@@ -98,51 +75,6 @@ class CellStatusHolder {
     }
 
     // ==================================== unselect ====================================
-
-    /**
-     * 初始化未选 map
-     * ! 逻辑较为复杂，减少调用次数
-     * 
-     * @param {[]} skuList sku 数组
-     */
-    static initUnselect(keyId, skuList) {
-        // 获取该 fence 中的非禁用的 cell 数组
-        CellStatusHolder._calculateAvailableCells(keyId, skuList)
-            // 过滤掉已选择的 cell
-            .filter(cell => !CellStatusHolder.isSelected(cell))
-            // 剩余的都是未选择的 cell，都加入 unselectMap
-            .forEach(cell => CellStatusHolder.putUnselect(cell));
-    }
-
-    /**
-     * 获取该 fence 内非禁用的（可选择的）规格数组
-     * 
-     * @param   {[]} skuList sku 数组
-     * @returns {[]} 非禁用的（可选择的）规格数组
-     */
-    static _calculateAvailableCells(keyId, skuList) {
-        // 其他 fence 的已选 cell
-        let otherSelectedCells = CellStatusHolder.selectedList().filter(sCell => sCell.keyId !== keyId);
-
-        // 筛选出其他 fence 已选规格的 sku
-        return skuList.filter(sku => CellStatusHolder._isHasAllSpec(sku, otherSelectedCells))
-            // 这些 sku 中 keyId 是该 fence 的 spec 即为该 fence 中未被禁用的 cell
-            .flatMap(sku => sku.specs)
-            .filter(spec => spec.keyId === keyId)
-            // 转 Cell
-            .map(spec => new Cell.instance(spec));
-    }
-
-    /**
-     * sku 是否全部拥有这些 spec
-     * 
-     * @param   {object}             sku   sku
-     * @param   {[{keyId, valueId}]} specs 其他 fence 的已选 cell
-     * @returns 是否全部拥有 specs
-     */
-    static _isHasAllSpec(sku, specs) {
-        return specs.every(spec => sku.specs.some(skuSpec => spec.keyId === skuSpec.keyId && spec.valueId === skuSpec.valueId));
-    }
 
     /**
      * 清空未选

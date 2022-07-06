@@ -1,9 +1,11 @@
 import { Cell } from "../models/cell";
+import { CellStatusHandler } from "../models/cell-status-handler";
 import { FenceGroup } from "../models/fence-group";
 
 Component({
   data: {
-    fenceGroup: {}
+    fenceGroup: {},
+    handler: {}
   },
   properties: {
     item: Object
@@ -17,21 +19,15 @@ Component({
       // 获取 fenceGroup
       let fenceGroup = FenceGroup.instance(item);
 
-      this.defaultSelect(fenceGroup)
+      this.data.handler = CellStatusHandler.instance(fenceGroup);
+      // 初始化
+      this.data.handler.initStatus(fenceGroup);
 
       // 数据绑定
       this.bindInitData(fenceGroup);
     }
   },
   methods: {
-    defaultSelect(fenceGroup) {
-      // 只有一个属性值得属性默认需要选中
-      let oneCells = fenceGroup.fences
-        .filter(fence => fence.cells.length === 1)
-        .flatMap(fence => fence.cells);
-
-      fenceGroup.reverseSelect(oneCells);
-    },
     /**
      * 规格点击事件
      * 
@@ -39,7 +35,7 @@ Component({
      */
     onCellTap(event) {
       let tapCell = Cell.instance(event.detail.cell);
-      this.data.fenceGroup.reverseSelect([tapCell]);
+      this.data.handler.tapCells([tapCell]);
       this.bindInitData(this.data.fenceGroup);
     },
     /**

@@ -14,7 +14,7 @@ const CellStatusConstant = {
   /**
    * 禁止选择
    */
-  FORBIDDEN: 2
+  FORBIDDEN: -1
 }
 
 const CommonSignConstant = {
