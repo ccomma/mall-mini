@@ -5,8 +5,8 @@ import { CellStatusHolder } from "./cell-status-holder";
 class CellStatusHandler {
 
     fenceGroup = {};
-    fenceMap = new Map();
-    cellMap = new Map();
+    // fenceMap = new Map();
+    // cellMap = new Map();
 
 
     static instance(fenceGroup) {
@@ -14,26 +14,28 @@ class CellStatusHandler {
         handler.fenceGroup = fenceGroup;
 
         // init map
-        fenceGroup.fences.forEach(fence => {
-            handler.fenceMap.set(fence.id, fence);
-            fence.cells.forEach(cell => handler.cellMap.set(cell.unionId(), cell));
-        });
+        // fenceGroup.fences.forEach(fence => {
+        //     handler.fenceMap.set(fence.id, fence);
+        //     fence.cells.forEach(cell => handler.cellMap.set(cell.unionId(), cell));
+        // });
 
         return handler;
     }
 
     initStatus() {
-        // TODO: 库存为 0 禁用
+        // 不点击，直接渲染，初始化时渲染出一开始就禁用的 cell
+        this.tapCells([]);
 
         // 只有一个非禁用属性值的属性默认需要选中
-        this.fenceGroup.fences
-            .filter(fence => fence.cells.filter(cell => cell.status === CellStatusConstant.UNSELECT) === 1)
-            .flatMap(fence => fence.cells)
-            // 必选渲染
-            .forEach(cell => {
-                CellStatusHolder.putSelect(cell);
-                this.render(cell);
-            });
+        this.fenceGroup.fences.forEach(fence => {
+            // 该 fence 的未选 cell 数组
+            let unSelectCells = fence.cells.filter(cell => cell.status === CellStatusConstant.UNSELECT);
+            // 只有一个则必选
+            if (unSelectCells.length === 1) {
+                CellStatusHolder.putSelect(unSelectCells[0]);
+                this.render(unSelectCells[0]);
+            }
+        });
     }
 
     /**
@@ -62,16 +64,10 @@ class CellStatusHandler {
         CellStatusHolder.clearUnselect();
         this.fenceGroup.fences.forEach(fence => {
             // 获取该 fence 中的非禁用的 cell 数组
-            this._calculateAvailableCells(fence.id)
-                // 过滤掉已选择的 cell
-                .filter(cell => !CellStatusHolder.isSelected(cell))
-                // 剩余的都是未选择的 cell，都加入 unselectMap
+            this._calculateUnselectCells(fence.id)
+                // 未选择的 cell 加入 unselectMap
                 .forEach(cell => CellStatusHolder.putUnselect(cell));
         });
-    }
-
-    render(cell) {
-        cell.status = CellStatusHolder.getStatus(cell);
     }
 
     renderAll() {
@@ -79,6 +75,12 @@ class CellStatusHandler {
         this.fenceGroup.fences.flatMap(fence => fence.cells)
             .forEach(cell => this.render(cell));
     }
+
+    render(cell) {
+        cell.status = CellStatusHolder.getStatus(cell);
+    }
+
+    // ==================================== private ====================================
 
     /**
      * 反选
@@ -95,8 +97,8 @@ class CellStatusHandler {
                 return true;
             }
 
-            // 未选 || 首次点击时所有 map 都为空，不存在禁用 => 添加为已选
-            if (CellStatusHolder.isUnselect(cell) || CellStatusHolder.selectedList().length === 0) {
+            // 未选 => 添加为已选
+            if (CellStatusHolder.isUnselect(cell)) {
                 CellStatusHolder.putSelect(cell);
                 return true;
             }
@@ -110,15 +112,16 @@ class CellStatusHandler {
      * 
      * @returns {[]} 非禁用的（可选择的）规格数组
      */
-    _calculateAvailableCells(keyId) {
+    _calculateUnselectCells(keyId) {
         // 其他 fence 的已选 cell
         let otherSelectedCells = CellStatusHolder.selectedList().filter(sCell => sCell.keyId !== keyId);
 
         // 筛选出其他 fence 已选规格的 sku
-        return this.fenceGroup.skuList.filter(sku => this._isHasAllSpec(sku, otherSelectedCells))
+        return this.fenceGroup.skuList.filter(sku => sku.stock > 0 && this._hasAllSpec(sku, otherSelectedCells))
             // 这些 sku 中 keyId 是该 fence 的 spec 即为该 fence 中未被禁用的 cell
             .flatMap(sku => sku.specs)
-            .filter(spec => spec.keyId === keyId)
+            // 过滤掉已选择的 spec
+            .filter(spec => spec.keyId === keyId && !CellStatusHolder.isSelected(spec))
             // 转 Cell
             .map(spec => new Cell.instance(spec));
     }
@@ -130,7 +133,7 @@ class CellStatusHandler {
      * @param   {[{keyId, valueId}]} specs 其他 fence 的已选 cell
      * @returns 是否全部拥有 specs
      */
-    _isHasAllSpec(sku, specs) {
+    _hasAllSpec(sku, specs) {
         return specs.every(spec => sku.specs.some(skuSpec => spec.keyId === skuSpec.keyId && spec.valueId === skuSpec.valueId));
     }
 

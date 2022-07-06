@@ -141,8 +141,8 @@ Page({
         },{
           keyId: 4,
           key: '款式',
-          valueId: 10,
-          value: '短袖'
+          valueId: 14,
+          value: '长袖'
         }],
         stock: 0
       }]
