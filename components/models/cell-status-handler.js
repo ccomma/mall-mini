@@ -32,11 +32,10 @@ class CellStatusHandler {
         // 只有一个非禁用属性值的属性默认需要选中
         this.fenceGroup.fences.forEach(fence => {
             // 该 fence 的未选 cell 数组
-            let unSelectCells = fence.cells.filter(cell => cell.status === CellStatusConstant.UNSELECT);
+            let unselectedCells = fence.cells.filter(cell => cell.status === CellStatusConstant.UNSELECT);
             // 只有一个则必选
-            if (unSelectCells.length === 1) {
-                CellStatusHolder.putSelect(unSelectCells[0]);
-                this.render(unSelectCells[0]);
+            if (unselectedCells.length === 1) {
+                this.selectCell(unselectedCells[0]);
             }
         });
     }
@@ -51,26 +50,21 @@ class CellStatusHandler {
         this._reverseSelect(tapCells);
 
         // 2.初始化未选
-        this.initUnselect();
+        this._initUnselect();
 
         // 3.渲染状态至 cell 中
         this.renderAll();
     }
 
-    /**
-     * 初始化未选状态 map
-     * ! 逻辑较为复杂，减少调用次数
-     * 
-     * @param {[]} skuList sku 数组
-     */
-    initUnselect() {
-        CellStatusHolder.clearUnselect();
-        this.fenceGroup.fences.forEach(fence => {
-            // 获取该 fence 中的非禁用的 cell 数组
-            this._calculateUnselectCells(fence.id)
-                // 未选择的 cell 加入 unselectMap
-                .forEach(cell => CellStatusHolder.putUnselect(cell));
-        });
+    selectCell(cell) {
+        CellStatusHolder.putSelect(cell);
+        this.render(cell);
+    }
+
+    unselectCell(cell) {
+        CellStatusHolder.deleteSelect(cell.keyId);
+        CellStatusHolder.putUnselect(cell);
+        this.render(cell);
     }
 
     renderAll() {
@@ -96,17 +90,33 @@ class CellStatusHandler {
         cells.forEach(cell => {
             // 原来已选择该 cell => 取消选择
             if (CellStatusHolder.isSelected(cell)) {
-                CellStatusHolder.deleteSelect(cell.keyId);
+                this.unselectCell(cell);
                 return true;
             }
 
             // 未选 => 添加为已选
-            if (CellStatusHolder.isUnselect(cell)) {
-                CellStatusHolder.putSelect(cell);
+            if (CellStatusHolder.isUnselected(cell)) {
+                this.selectCell(cell);
                 return true;
             }
 
             // 禁用状态 => 不处理
+        });
+    }
+
+    /**
+     * 初始化未选状态 map
+     * ! 逻辑较为复杂，减少调用次数
+     * 
+     * @param {[]} skuList sku 数组
+     */
+    _initUnselect() {
+        CellStatusHolder.clearUnselect();
+        this.fenceGroup.fences.forEach(fence => {
+            // 获取该 fence 中的非禁用的 cell 数组
+            this._calculateUnselectCells(fence.id)
+                // 未选择的 cell 加入 unselectMap
+                .forEach(cell => CellStatusHolder.putUnselect(cell));
         });
     }
 

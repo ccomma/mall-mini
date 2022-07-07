@@ -1,7 +1,7 @@
 <view class="container">
   <!-- 商品属性 -->
   <view class="item-view">
-    <image class="image" scr="{{viewItem.image}}" />
+    <image class="image" src="{{viewItem.image}}" />
     <view class="item-content-view">
       <l-price value="{{viewItem.price}}" unit-size="19" value-size="34" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal"></l-price>
       <view>
