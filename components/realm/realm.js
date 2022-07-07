@@ -77,8 +77,10 @@ Component({
       this.bindFenceGroupData(this.data.fenceGroup);
 
       // viewItem
-      this.data.viewItemHandler.update(CellStatusHandler.skuList);
-      this.bindViewItemData(this.data.viewItem);
+      let success = this.data.viewItemHandler.update(this.data.fenceGroupHandler.skuList);
+      if (success) {
+        this.bindViewItemData(this.data.viewItemHandler.viewItem);
+      }
     },
 
     bindFenceGroupData(fenceGroup) {
