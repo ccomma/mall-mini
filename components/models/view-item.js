@@ -10,6 +10,12 @@ class ViewItem {
     /** 库存 */
     stock;
 
+    /** 已选规格列表 */
+    selectedList = [];
+
+    /** 数量 */
+    count = 1;
+
 
     static instance(obj) {
         let item = new ViewItem();

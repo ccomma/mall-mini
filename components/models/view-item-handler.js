@@ -24,6 +24,7 @@ class ViewItemHandler {
         this.viewItem.image = sku.image;
         this.viewItem.price = sku.price;
         this.viewItem.stock = sku.stock;
+        this.viewItem.selectedList = CellStatusHolder.selectedList();
     }
 
 }

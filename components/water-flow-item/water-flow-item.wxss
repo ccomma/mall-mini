@@ -28,7 +28,3 @@
   /* text-overflow: ellipsis; */
   margin-bottom: 18rpx;
 }
-
-.price-decimal {
-  font-size: 19rpx;
-}

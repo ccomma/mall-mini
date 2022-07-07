@@ -1,10 +1,21 @@
 <view class="container">
   <!-- 商品属性 -->
   <view class="item-view">
-    <image scr="" />
+    <image class="image" scr="{{viewItem.image}}" />
+    <view class="item-content-view">
+      <l-price value="{{viewItem.price}}" unit-size="19" value-size="34" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal"></l-price>
+      <view>
+        <text>已选</text>
+        <block wx:for="{{viewItem.selectedList}}" wx:key="index">
+          <text>{{item.value}}，</text>
+        </block>
+        <text>{{viewItem.count}}个</text>
+      </view>
+    </view>
   </view>
-  <!-- fences -->
+  <!-- 滚动栏 -->
   <scroll-view class="scroll-view" scroll-y="{{true}}">
+    <!-- fences -->
     <block wx:for="{{fenceGroup.fences}}" wx:key="index">
       <my-fence bind:celltap="onCellTap" fence="{{item}}"></my-fence>
     </block>
