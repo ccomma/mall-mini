@@ -1,0 +1,27 @@
+/* components/count/count.wxss */
+.counter-total {
+  width: 170rpx;
+  height: 38rpx;
+}
+.counter-symbol {
+  background-color: transparent;
+  font-size: 20rpx;
+  font-weight: bolder;
+  color: #333;
+  width: 50rpx;
+}
+.counter-disabled {
+  background-color: transparent;
+  font-size: 20rpx;
+  font-weight: bolder;
+  width: 50rpx;
+}
+.counter-count {
+  background-color: #f2f2f2 !important;
+  font-size: 20rpx;
+  font-weight: bolder;
+  color: #333;
+  width: 30rpx !important;
+  min-height: 38rpx;
+  line-height: 38rpx;
+}

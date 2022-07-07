@@ -14,13 +14,16 @@
     </view>
   </view>
   <!-- 滚动栏 -->
-  <scroll-view class="scroll-view" scroll-y="{{true}}">
-    <!-- fences -->
-    <block wx:for="{{fenceGroup.fences}}" wx:key="index">
-      <my-fence bind:celltap="onCellTap" fence="{{item}}"></my-fence>
-    </block>
-    <view class="counter-container">
-      <l-counter></l-counter>
+  <scroll-view class="scroll-view" scroll-y>
+    <view class="inner-scroll-view">
+      <!-- fences -->
+      <block wx:for="{{fenceGroup.fences}}" wx:key="index">
+        <my-fence bind:celltap="onCellTap" fence="{{item}}"></my-fence>
+      </block>
+      <view class="counter-container">
+        <text class="counter-text">数量</text>
+        <my-count min="1" max="200" count="{{viewItem.count}}"></my-count>
+      </view>
     </view>
   </scroll-view>
   <!-- 确定 -->

@@ -3,7 +3,7 @@ page {
 }
 
 .container {
-  padding: 30rpx
+  padding: 35rpx 0 35rpx 35rpx;
 }
 
 /* 商品信息 */
@@ -24,7 +24,21 @@ page {
 
 /* 滚动栏 */
 .scroll-view {
-  height: 700rpx;
+  height: 500rpx;
+}
+.inner-scroll-view {
+  padding-right: 35rpx;
+}
+.counter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.counter-text {
+  color: #333;
+  font-size: 27rpx;
+  font-weight: 600;
 }
 
 /* 按钮 */
