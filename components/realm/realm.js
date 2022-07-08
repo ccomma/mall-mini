@@ -1,5 +1,6 @@
 import { Cell } from "../models/cell";
 import { CellStatusHandler } from "../models/cell-status-handler";
+import { CellStatusHolder } from "../models/cell-status-holder";
 import { FenceGroup } from "../models/fence-group";
 import { ViewItem } from "../models/view-item";
 import { ViewItemHandler } from "../models/view-item-handler";
@@ -8,8 +9,8 @@ Component({
   data: {
     viewItem: {},
     fenceGroup: {},
-    fenceGroupHandler: {},
-    viewItemHandler: {}
+    viewItemHandler: {},
+    fenceGroupHandler: {}
   },
 
   properties: {
@@ -27,11 +28,15 @@ Component({
 
       let viewItem = ViewItem.instance(item);
 
-      // 初始化
-      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, viewItem, item);
+      let cellStatusHolder = CellStatusHolder.instance(fenceGroup.fences.length);
+
+      let viewItemHandler = ViewItemHandler.instance(viewItem, cellStatusHolder);
+
+      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, item, viewItemHandler, cellStatusHolder);
       fenceGroupHandler.initStatus(viewItem);
 
       // 数据绑定
+      this.data.viewItemHandler = viewItemHandler;
       this.data.fenceGroupHandler = fenceGroupHandler;
       this.bindFenceGroupData(fenceGroup);
       this.bindViewItemData(viewItem);
@@ -52,9 +57,13 @@ Component({
       this.bindViewItemData(this.data.viewItem);
     },
     
+    /**
+     * 数量选择器点击事件
+     * 
+     * @param {*} event 
+     */
     onCounterTap(event) {
-      let viewItemHandler = ViewItemHandler.instance(this.data.viewItem);
-      viewItemHandler.refresh({count: event.detail.count});
+      this.data.viewItemHandler.refresh({count: event.detail.count});
       this.bindViewItemData(this.data.viewItem);
     },
 

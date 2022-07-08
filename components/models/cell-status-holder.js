@@ -1,8 +1,9 @@
 import { CellStatusConstant } from "../../constants/common-constant";
 import { Cell } from "./cell";
 
-// TODO: 去掉 static，实例化
 class CellStatusHolder {
+
+    specKeyCount;
 
     /**
      * 已选择 cell map
@@ -10,24 +11,30 @@ class CellStatusHolder {
      * value: cell
      * ? 排序
      */
-    static selectedMap = new Map();
+    selectedMap = new Map();
 
     /**
      * 未选择 cell map
      * key:   `${cell.keyId}_${cell.valueId}`
      * value: cell
      */
-    static unselectMap = new Map();
+    unselectMap = new Map();
 
 
-    static getStatus(cell) {
+    static instance(specKeyCount) {
+        let holder = new CellStatusHolder();
+        holder.specKeyCount = specKeyCount;
+        return holder;
+    }
+
+    getStatus(cell) {
         // 选中
-        if (CellStatusHolder.isSelected(cell)) {
+        if (this.isSelected(cell)) {
             return CellStatusConstant.SELECTED;
         }
 
         // 未选
-        if (CellStatusHolder.isUnselected(cell)) {
+        if (this.isUnselected(cell)) {
             return CellStatusConstant.UNSELECT;
         }
 
@@ -37,8 +44,8 @@ class CellStatusHolder {
 
     // ==================================== selected ====================================
 
-    static isAllSelected(specKeyCount) {
-        return CellStatusHolder.selectedList().length === specKeyCount;
+    isAllSelected() {
+        return this.selectedList().length === this.specKeyCount;
     }
 
     /**
@@ -46,7 +53,7 @@ class CellStatusHolder {
      * 
      * @returns 已选中数组
      */
-    static selectedList() {
+    selectedList() {
         return [...this.selectedMap.values()];
     }
 
@@ -57,7 +64,7 @@ class CellStatusHolder {
      * @param {{keyId, valueId}} cell cell
      * @returns true：已选择
      */
-    static isSelected(cell) {
+    isSelected(cell) {
         let selectedCell = this.selectedMap.get(cell.keyId);
         return selectedCell && cell.valueId === selectedCell.valueId;
     }
@@ -67,7 +74,7 @@ class CellStatusHolder {
      * 
      * @param {Cell} cell cell
      */
-    static putSelect(cell) {
+    putSelect(cell) {
         this.selectedMap.set(cell.keyId, cell);
     }
 
@@ -76,7 +83,7 @@ class CellStatusHolder {
      * 
      * @param {string} keyId 属性 id
      */
-    static deleteSelect(keyId) {
+    deleteSelect(keyId) {
         this.selectedMap.delete(keyId);
     }
 
@@ -85,7 +92,7 @@ class CellStatusHolder {
     /**
      * 清空未选
      */
-    static clearUnselect() {
+    clearUnselect() {
         this.unselectMap.clear();
     }
 
@@ -95,7 +102,7 @@ class CellStatusHolder {
     * @param {{Cell}} cell cell
     * @returns true：未选择
     */
-    static isUnselected(cell) {
+    isUnselected(cell) {
         return this.unselectMap.has(cell.unionId());
     }
 
@@ -104,7 +111,7 @@ class CellStatusHolder {
      * 
      * @param {Cell} cell cell
      */
-    static putUnselect(cell) {
+    putUnselect(cell) {
         this.unselectMap.set(cell.unionId(), cell);
     }
 
@@ -113,7 +120,7 @@ class CellStatusHolder {
      * 
      * @param {{Cell}} cell cell
      */
-    static deleteUnselect(cell) {
+    deleteUnselect(cell) {
         this.unselectMap.delete(cell.unionId());
     }
 

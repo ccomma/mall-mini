@@ -4,32 +4,35 @@ class ViewItemHandler {
 
     viewItem = {};
 
+    cellStatusHolder = {};
 
-    static instance(viewItem) {
+
+    static instance(viewItem, cellStatusHolder) {
         let handler = new ViewItemHandler();
         handler.viewItem = viewItem;
+        handler.cellStatusHolder = cellStatusHolder;
         return handler;
     }
 
-    refreshFromSku(skuList, specKeyCount) {
-        if (!CellStatusHolder.isAllSelected(specKeyCount)) {
+    refreshFromSku(skuList) {
+        if (!this.cellStatusHolder.isAllSelected()) {
             return false;
         }
 
         // 找出对应的 sku
-        let sku = skuList.find(sku => sku.specs.every(spec => CellStatusHolder.isSelected(spec)));
+        let sku = skuList.find(sku => sku.specs.every(spec => this.cellStatusHolder.isSelected(spec)));
 
         this.refresh({
             image: sku.image,
             price: sku.price,
             stock: sku.stock,
-            selectedList: CellStatusHolder.selectedList()
+            selectedList: this.cellStatusHolder.selectedList()
         })
         return true;
     }
 
     refreshSelectedList() {
-        this.refresh({selectedList: CellStatusHolder.selectedList()});
+        this.refresh({selectedList: this.cellStatusHolder.selectedList()});
     }
 
     refresh(viewItem) {

@@ -1,7 +1,5 @@
 import { CellStatusConstant } from "../../constants/common-constant";
 import { Cell } from "./cell";
-import { CellStatusHolder } from "./cell-status-holder";
-import { ViewItemHandler } from "./view-item-handler";
 
 class CellStatusHandler {
 
@@ -12,15 +10,18 @@ class CellStatusHandler {
     /** viewItem 处理 */
     viewItemHandler = {};
 
+    cellStatusHolder = {};
+
     // fenceMap = new Map();
     // cellMap = new Map();
 
 
-    static instance(fenceGroup, viewItem, item) {
+    static instance(fenceGroup, item, viewItemHandler, cellStatusHolder) {
         let handler = new CellStatusHandler();
         handler.skuList = item.skuList;
         handler.fenceGroup = fenceGroup;
-        handler.viewItemHandler = ViewItemHandler.instance(viewItem);
+        handler.viewItemHandler = viewItemHandler;
+        handler.cellStatusHolder = cellStatusHolder;
 
         // init map
         // fenceGroup.fences.forEach(fence => {
@@ -46,7 +47,7 @@ class CellStatusHandler {
         });
 
         // 如果全选更改商品展示信息
-        this.viewItemHandler.refreshFromSku(this.skuList, this.fenceGroup.fences.length);
+        this.viewItemHandler.refreshFromSku(this.skuList);
     }
 
     /**
@@ -66,15 +67,15 @@ class CellStatusHandler {
     }
 
     selectCell(cell) {
-        CellStatusHolder.putSelect(cell);
+        this.cellStatusHolder.putSelect(cell);
         this.render(cell);
         // 刷新 viewItem 中的已选
-        this.viewItemHandler.refresh({count: 1, selectedList: CellStatusHolder.selectedList()});
+        this.viewItemHandler.refresh({count: 1, selectedList: this.cellStatusHolder.selectedList()});
     }
 
     unselectCell(cell) {
-        CellStatusHolder.deleteSelect(cell.keyId);
-        CellStatusHolder.putUnselect(cell);
+        this.cellStatusHolder.deleteSelect(cell.keyId);
+        this.cellStatusHolder.putUnselect(cell);
         this.render(cell);
         // 刷新 viewItem 中的已选
         this.viewItemHandler.refreshSelectedList();
@@ -87,7 +88,7 @@ class CellStatusHandler {
     }
 
     render(cell) {
-        cell.status = CellStatusHolder.getStatus(cell);
+        cell.status = this.cellStatusHolder.getStatus(cell);
     }
 
     // ==================================== private ====================================
@@ -102,13 +103,13 @@ class CellStatusHandler {
         // 反转已选
         cells.forEach(cell => {
             // 原来已选择该 cell => 取消选择
-            if (CellStatusHolder.isSelected(cell)) {
+            if (this.cellStatusHolder.isSelected(cell)) {
                 this.unselectCell(cell);
                 return true;
             }
 
             // 未选 => 添加为已选
-            if (CellStatusHolder.isUnselected(cell)) {
+            if (this.cellStatusHolder.isUnselected(cell)) {
                 this.selectCell(cell);
                 return true;
             }
@@ -127,12 +128,12 @@ class CellStatusHandler {
      * @param {[]} skuList sku 数组
      */
     _initUnselect() {
-        CellStatusHolder.clearUnselect();
+        this.cellStatusHolder.clearUnselect();
         this.fenceGroup.fences.forEach(fence => {
             // 获取该 fence 中的非禁用的 cell 数组
             this._calculateUnselectCells(fence.id)
                 // 未选择的 cell 加入 unselectMap
-                .forEach(cell => CellStatusHolder.putUnselect(cell));
+                .forEach(cell => this.cellStatusHolder.putUnselect(cell));
         });
     }
 
@@ -143,14 +144,14 @@ class CellStatusHandler {
      */
     _calculateUnselectCells(keyId) {
         // 其他 fence 的已选 cell
-        let otherSelectedCells = CellStatusHolder.selectedList().filter(sCell => sCell.keyId !== keyId);
+        let otherSelectedCells = this.cellStatusHolder.selectedList().filter(sCell => sCell.keyId !== keyId);
 
         // 筛选出其他 fence 已选规格的 sku
         return this.skuList.filter(sku => sku.stock > 0 && this._hasAllSpec(sku, otherSelectedCells))
             // 这些 sku 中 keyId 是该 fence 的 spec 即为该 fence 中未被禁用的 cell
             .flatMap(sku => sku.specs)
             // 过滤掉已选择的 spec
-            .filter(spec => spec.keyId === keyId && !CellStatusHolder.isSelected(spec))
+            .filter(spec => spec.keyId === keyId && !this.cellStatusHolder.isSelected(spec))
             // 转 Cell
             .map(spec => new Cell.instance(spec));
     }
