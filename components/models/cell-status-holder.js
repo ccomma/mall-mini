@@ -25,7 +25,7 @@ class CellStatusHolder {
         }
 
         // 未选
-        if (CellStatusHolder.isUnselect(cell)) {
+        if (CellStatusHolder.isUnselected(cell)) {
             return CellStatusConstant.UNSELECT;
         }
 
@@ -89,7 +89,7 @@ class CellStatusHolder {
     * @param {{Cell}} cell cell
     * @returns true：未选择
     */
-    static isUnselect(cell) {
+    static isUnselected(cell) {
         return this.unselectMap.has(cell.unionId());
     }
 
