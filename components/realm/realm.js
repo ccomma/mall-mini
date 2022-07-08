@@ -51,6 +51,12 @@ Component({
       this.bindFenceGroupData(this.data.fenceGroup);
       this.bindViewItemData(this.data.viewItem);
     },
+    
+    onCounterTap(event) {
+      let viewItemHandler = ViewItemHandler.instance(this.data.viewItem);
+      viewItemHandler.refresh({count: event.detail.count});
+      this.bindViewItemData(this.data.viewItem);
+    },
 
     bindFenceGroupData(fenceGroup) {
       this.setData({
@@ -59,7 +65,6 @@ Component({
     },
 
     bindViewItemData(viewItem) {
-      console.log(viewItem);
       this.setData({
         viewItem: viewItem
       });

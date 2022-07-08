@@ -1,12 +1,14 @@
 import { CellStatusConstant } from "../../constants/common-constant";
 import { Cell } from "./cell";
 
+// TODO: 去掉 static，实例化
 class CellStatusHolder {
 
     /**
      * 已选择 cell map
      * key:   cell.keyId; 因为一个 fence  里同时只能被选中一个 cell
      * value: cell
+     * ? 排序
      */
     static selectedMap = new Map();
 
@@ -34,6 +36,10 @@ class CellStatusHolder {
     }
 
     // ==================================== selected ====================================
+
+    static isAllSelected(specKeyCount) {
+        return CellStatusHolder.selectedList().length === specKeyCount;
+    }
 
     /**
      * 获取已选中数组

@@ -1,1 +1,1 @@
-<l-counter count="{{count}}" max="{{max}}" min="{{min}}" round-float l-symbol-class="counter-symbol" l-disabled-class="counter-disabled" l-count-class="counter-count" l-class="counter-total"></l-counter>
+<l-counter bind:lintap="onCounterTap" count="{{count}}" max="{{max}}" min="{{min}}" round-float l-symbol-class="counter-symbol" l-disabled-class="counter-disabled" l-count-class="counter-count" l-class="counter-total"></l-counter>

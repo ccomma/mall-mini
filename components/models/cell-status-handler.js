@@ -20,7 +20,7 @@ class CellStatusHandler {
         let handler = new CellStatusHandler();
         handler.skuList = item.skuList;
         handler.fenceGroup = fenceGroup;
-        handler.viewItemHandler = ViewItemHandler.instance(viewItem, fenceGroup.fences.length);
+        handler.viewItemHandler = ViewItemHandler.instance(viewItem);
 
         // init map
         // fenceGroup.fences.forEach(fence => {
@@ -46,9 +46,7 @@ class CellStatusHandler {
         });
 
         // 如果全选更改商品展示信息
-        if (this.viewItemHandler.isAllChoose()) {
-            this.viewItemHandler.updateSku(this.skuList);
-        }
+        this.viewItemHandler.refreshFromSku(this.skuList, this.fenceGroup.fences.length);
     }
 
     /**
@@ -71,7 +69,7 @@ class CellStatusHandler {
         CellStatusHolder.putSelect(cell);
         this.render(cell);
         // 刷新 viewItem 中的已选
-        this.viewItemHandler.refreshSelectedList();
+        this.viewItemHandler.refresh({count: 1, selectedList: CellStatusHolder.selectedList()});
     }
 
     unselectCell(cell) {
@@ -119,9 +117,7 @@ class CellStatusHandler {
         });
 
         // 如果全选更改商品展示信息
-        if (this.viewItemHandler.isAllChoose()) {
-            this.viewItemHandler.updateSku(this.skuList);
-        }
+        this.viewItemHandler.refreshFromSku(this.skuList, this.fenceGroup.fences.length);
     }
 
     /**
