@@ -12,7 +12,7 @@ Component({
   methods: {
     onItemTap(event) {
       let pid = event.currentTarget.dataset.pid;
-      wx.navigateTo({
+      this.router.navigateTo({
         url: `/pages/item-detail/item-detail?pid=${pid}`
       })
     }

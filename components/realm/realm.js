@@ -22,49 +22,23 @@ Component({
         return;
       }
 
-      // 初始化 fenceGroup
-      this.firstRenderFenceGroup(item);
-
-      // 初次渲染 viewItem
-      this.firstRenderViewItem(item);
-    }
-  },
-
-  methods: {
-    /**
-     * 初次渲染 fenceGroup
-     * 
-     * @param {object} item spu
-     */
-    firstRenderFenceGroup(item) {
       // 获取 fenceGroup
       let fenceGroup = FenceGroup.instance(item);
 
+      let viewItem = ViewItem.instance(item);
+
       // 初始化
-      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, item.skuList);
-      fenceGroupHandler.initStatus(fenceGroup);
+      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, viewItem, item);
+      fenceGroupHandler.initStatus(viewItem);
 
       // 数据绑定
       this.data.fenceGroupHandler = fenceGroupHandler;
       this.bindFenceGroupData(fenceGroup);
-    },
-
-    /**
-     * 初次渲染 viewItem
-     * 
-     * @param {object} item spu
-     */
-    firstRenderViewItem(item) {
-      let viewItem = ViewItem.instance(item);
-      let viewItemHandler = ViewItemHandler.instance(viewItem, this.data.fenceGroup.fences.length);
-      // 已选择一个sku，更新 spu 展示信息
-      viewItemHandler.update(item.skuList);
-
-      // 数据绑定
-      this.data.viewItemHandler = viewItemHandler;
       this.bindViewItemData(viewItem);
-    },
+    }
+  },
 
+  methods: {
     /**
      * 规格点击事件
      * 
@@ -75,12 +49,7 @@ Component({
       let tapCell = Cell.instance(event.detail.cell);
       this.data.fenceGroupHandler.tapCells([tapCell]);
       this.bindFenceGroupData(this.data.fenceGroup);
-
-      // viewItem
-      let success = this.data.viewItemHandler.update(this.data.fenceGroupHandler.skuList);
-      if (success) {
-        this.bindViewItemData(this.data.viewItemHandler.viewItem);
-      }
+      this.bindViewItemData(this.data.viewItem);
     },
 
     bindFenceGroupData(fenceGroup) {

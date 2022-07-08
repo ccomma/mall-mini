@@ -4,7 +4,9 @@ class ViewItemHandler {
 
     viewItem = {};
 
+    /** 属性总数量 */
     specKeyCount;
+
 
     static instance(viewItem, specKeyCount) {
         let handler = new ViewItemHandler();
@@ -13,21 +15,27 @@ class ViewItemHandler {
         return handler;
     }
 
-    update(skuList) {
-        if (CellStatusHolder.selectedList().length !== this.specKeyCount) {
+    isAllChoose() {
+        return CellStatusHolder.selectedList().length === this.specKeyCount;
+    }
+
+    updateSku(skuList) {
+        if (!this.isAllChoose()) {
             return false;
         }
 
         // 找出对应的 sku
-        console.log(skuList);
         let sku = skuList.find(sku => sku.specs.every(spec => CellStatusHolder.isSelected(spec)));
 
         this.viewItem.image = sku.image;
         this.viewItem.price = sku.price;
         this.viewItem.stock = sku.stock;
-        this.viewItem.selectedList = CellStatusHolder.selectedList();
-
+        this.refreshSelectedList();
         return true;
+    }
+
+    refreshSelectedList() {
+        this.viewItem.selectedList = CellStatusHolder.selectedList();
     }
 
 }

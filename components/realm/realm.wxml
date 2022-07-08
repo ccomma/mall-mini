@@ -1,11 +1,11 @@
 <view class="container">
   <!-- 商品属性 -->
   <view class="item-view">
-    <image class="image" scr="{{viewItem.image}}" />
+    <image class="image" src="{{viewItem.image}}" />
     <view class="item-content-view">
-      <l-price value="{{viewItem.price}}" unit-size="19" value-size="34" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal"></l-price>
-      <view>
-        <text>已选</text>
+      <l-price value="{{viewItem.price}}" unit-size="22" value-size="44" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
+      <view class="item-text-view">
+        <text class="selected-text">已选</text>
         <block wx:for="{{viewItem.selectedList}}" wx:key="index">
           <text>{{item.value}}，</text>
         </block>

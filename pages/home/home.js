@@ -97,7 +97,7 @@ Page({
     //   })
     // }
 
-    let demo = { id: '-1', image: 'https://img12.360buyimg.com/shaidan/jfs/t1/80869/33/20210/448300/62b96e0cE0bd0ee62/ecad9a7724d40903.jpg.webp', name: '凯度（CASDON）凯度蒸烤箱电蒸箱家用 台式蒸烤一体机 SV3080DEB-B7', price: 2299.10 }
+    let demo = { id: '-1', image: 'https://img12.360buyimg.com/shaidan/jfs/t1/80869/33/20210/448300/62b96e0cE0bd0ee62/ecad9a7724d40903.jpg', name: '凯度（CASDON）凯度蒸烤箱电蒸箱家用 台式蒸烤一体机 SV3080DEB-B7', price: 2299.10 }
     let demoList = [];
     for (let i = 0; i < 10; i++) {
       demoList.push(demo);

@@ -1,20 +1,26 @@
 import { CellStatusConstant } from "../../constants/common-constant";
 import { Cell } from "./cell";
 import { CellStatusHolder } from "./cell-status-holder";
+import { ViewItemHandler } from "./view-item-handler";
 
 class CellStatusHandler {
 
     skuList = [];
 
     fenceGroup = {};
+
+    /** viewItem 处理 */
+    viewItemHandler = {};
+
     // fenceMap = new Map();
     // cellMap = new Map();
 
 
-    static instance(fenceGroup, skuList) {
+    static instance(fenceGroup, viewItem, item) {
         let handler = new CellStatusHandler();
-        handler.skuList = skuList;
+        handler.skuList = item.skuList;
         handler.fenceGroup = fenceGroup;
+        handler.viewItemHandler = ViewItemHandler.instance(viewItem, fenceGroup.fences.length);
 
         // init map
         // fenceGroup.fences.forEach(fence => {
@@ -37,8 +43,16 @@ class CellStatusHandler {
             if (unSelectCells.length === 1) {
                 CellStatusHolder.putSelect(unSelectCells[0]);
                 this.render(unSelectCells[0]);
+
+                // 刷新 viewItem 中的已选
+                this.viewItemHandler.refreshSelectedList();
             }
         });
+
+        // 如果全选更改商品展示信息
+        if (this.viewItemHandler.isAllChoose()) {
+            this.viewItemHandler.updateSku(this.skuList);
+        }
     }
 
     /**
@@ -97,17 +111,24 @@ class CellStatusHandler {
             // 原来已选择该 cell => 取消选择
             if (CellStatusHolder.isSelected(cell)) {
                 CellStatusHolder.deleteSelect(cell.keyId);
+                this.viewItemHandler.refreshSelectedList();
                 return true;
             }
 
             // 未选 => 添加为已选
             if (CellStatusHolder.isUnselect(cell)) {
                 CellStatusHolder.putSelect(cell);
+                this.viewItemHandler.refreshSelectedList();
                 return true;
             }
 
             // 禁用状态 => 不处理
         });
+
+        // 如果全选更改商品展示信息
+        if (this.viewItemHandler.isAllChoose()) {
+            this.viewItemHandler.updateSku(this.skuList);
+        }
     }
 
     /**
