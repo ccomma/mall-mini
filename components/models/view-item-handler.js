@@ -1,4 +1,3 @@
-import { CellStatusHolder } from "./cell-status-holder";
 
 class ViewItemHandler {
 

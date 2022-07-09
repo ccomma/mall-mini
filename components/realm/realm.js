@@ -9,6 +9,7 @@ Component({
   data: {
     viewItem: {},
     fenceGroup: {},
+    cellStatusHolder: {},
     viewItemHandler: {},
     fenceGroupHandler: {}
   },
@@ -36,6 +37,7 @@ Component({
       fenceGroupHandler.initStatus(viewItem);
 
       // 数据绑定
+      this.data.cellStatusHolder = cellStatusHolder;
       this.data.viewItemHandler = viewItemHandler;
       this.data.fenceGroupHandler = fenceGroupHandler;
       this.bindFenceGroupData(fenceGroup);
@@ -65,6 +67,18 @@ Component({
     onCounterTap(event) {
       this.data.viewItemHandler.refresh({count: event.detail.count});
       this.bindViewItemData(this.data.viewItem);
+    },
+
+    /**
+     * 确认按钮
+     * 
+     * @param {*} event 
+     */
+    onConfirmTap(event) {
+      if (this.data.cellStatusHolder.isAllSelected()) {
+        // ? 是否请求获取库存进行判断
+        // 若有库存再根据点击类型加入购物车还是账单页（转换为 CartItem 进行算价）
+      }
     },
 
     bindFenceGroupData(fenceGroup) {

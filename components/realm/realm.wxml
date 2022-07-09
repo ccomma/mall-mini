@@ -3,7 +3,7 @@
   <view class="item-view">
     <image class="image" src="{{viewItem.image}}" />
     <view class="item-content-view">
-      <l-price value="{{viewItem.price}}" unit-size="22" value-size="44" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
+      <l-price value="{{viewItem.price}}" unit-size="24" value-size="50" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
       <view class="item-text-view">
         <text class="selected-text">已选</text>
         <block wx:for="{{viewItem.selectedList}}" wx:key="index">
@@ -22,10 +22,14 @@
       </block>
       <view class="counter-container">
         <text class="counter-text">数量</text>
-        <my-count bind:countertap="onCounterTap" min="1" max="200" count="{{viewItem.count}}"></my-count>
+        <my-count bind:countertap="onCounterTap" min="{{viewItem.minCount}}" max="{{viewItem.maxCount}}" count="{{viewItem.count}}"></my-count>
       </view>
     </view>
   </scroll-view>
   <!-- 确定 -->
-  <view class="btn-view">btn</view>
+  <view bind:tap="onConfirmTap" class="btn-container">
+    <view class="btn">
+      <text class="btn-text">确定</text>
+    </view>
+  </view>
 </view>

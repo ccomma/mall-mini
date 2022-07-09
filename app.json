@@ -1,8 +1,5 @@
 {
-  "pages": [
-    "pages/home/home",
-    "pages/item-detail/item-detail"
-  ],
+  "pages": ["pages/home/home", "pages/item-detail/item-detail"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -10,6 +7,7 @@
     "navigationBarTextStyle": "black",
     "onReachBottomDistance": 50
   },
+  "lazyCodeLoading": "requiredComponents",
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
@@ -18,7 +16,6 @@
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
     "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
-    "l-button": "/miniprogram_npm/lin-ui/button/index",
     "l-segment": "/miniprogram_npm/lin-ui/segment/index",
     "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
     "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",

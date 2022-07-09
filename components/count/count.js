@@ -6,7 +6,7 @@ Component({
   properties: {
     count: {
       type: Number,
-      value: 4
+      value: 1
     },
     max: {
       type: Number,
@@ -14,7 +14,7 @@ Component({
     },
     min: {
       type: Number,
-      value: 2
+      value: 1
     }
   },
 

@@ -1,5 +1,5 @@
 .container {
-  height: 50rpx;
+  height: 58rpx;
   padding: 0 25rpx;
   display: flex;
   flex-direction: row;
@@ -7,9 +7,9 @@
   align-items: center;
   background-color: #f2f2f2;
   font-size: 22rpx;
-  border: 1rpx solid #f2f2f2;
+  border: 2rpx solid #f2f2f2;
   border-radius: 50px;
-  min-width: 90rpx;
+  min-width: 70rpx;
 }
 
 .forbidden {

@@ -1,6 +1,7 @@
+import { Cart } from "../../models/cart";
 
 class ViewItem {
-    
+
     /** 主图 */
     image;
 
@@ -15,6 +16,12 @@ class ViewItem {
 
     /** 数量 */
     count = 1;
+
+    /** 最小数量 */
+    minCount = Cart.MIN_COUNT;
+
+    /** 最大数量 */
+    maxCount = Cart.MAX_COUNT;
 
 
     static instance(obj) {
