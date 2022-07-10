@@ -77,7 +77,7 @@ Component({
     onConfirmTap(event) {
       if (this.data.cellStatusHolder.isAllSelected()) {
         // ? 是否请求获取库存进行判断
-        // 若有库存再根据点击类型加入购物车还是账单页（转换为 CartItem 进行算价）
+        this.triggerEvent('confirmtap')
       }
     },
 

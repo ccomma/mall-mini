@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="icons">
+    <view bind:tap="onGoToShop">
+      <view class="iconfont icon-shop red-font"></view>
+      <text class="icon-text">店铺</text>
+    </view>
+    <view bind:tap="onGoToChat">
+      <view class="iconfont icon-message"></view>
+      <text class="icon-text">客服</text>
+    </view>
+    <view bind:tap="onGoToCart">
+      <l-badge value="14" shape="circle" l-class="cart-badge">
+        <view class="iconfont icon-cart"></view>
+      </l-badge>
+      <text class="icon-text">购物车</text>
+    </view>
+  </view>
+  <view class="btn-container">
+    <view bind:tap="onAddToCart" class="btn cart-btn">加入购物车</view>
+    <view bind:tap="onBuy" class="btn buy-btn">立即购买</view>
+  </view>
+</view>

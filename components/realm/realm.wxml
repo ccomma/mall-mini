@@ -28,8 +28,6 @@
   </scroll-view>
   <!-- 确定 -->
   <view bind:tap="onConfirmTap" class="btn-container">
-    <view class="btn">
-      <text class="btn-text">确定</text>
-    </view>
+    <view class="btn">确定</view>
   </view>
 </view>

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3511789 */
+  src: url('iconfont.eot?t=1657421787746'); /* IE9 */
+  src: url('iconfont.eot?t=1657421787746#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAASwAAsAAAAACWQAAARkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFQGYACDHAqGGIU0ATYCJAMQCwoABCAFhGcHPxszCBHVowuQ/RxsHMeIm7uwJB0Wwha/7fN1o4yiu7t3BNVa9uzuE8YSKEAXGw9UnkCZqEToWE2OjbgDne0qljZ5MbUUvB1fVYEJNp5R9dXUdqsKj1BZMrbLT/8Dks0f0JW/wN9/3Kuc5YnAA/DMufGDxcbWgO3RPbHAvQJSVcCzGM9ZuXEXAbTpskbcc/YMBOwxrjAbxJF5lQHK+HhMS4kDui1BHiEEOp+Kri1AeAEKSE/EM+A5/f34px90gISSwTvk4NopEbbui+/XMv4fB/lNXCHw+ATUgAysnJksbsc150i5ZwUJ0uciMwbqoiOCvfZMfq1V/5V2VRy6z4Ft//GIIOrgcbqM22HnO0YNKSV3kkWCuWvsl4B3ZU0TaIOYAIh98AST+3k1EvIGg8FieUopklUrRhCMM4QPM3m49YKheB3C4owQwoM7LhCk6wFMbr9QUFj7NRPlXkpEtHYU4uvcTfYGZy0uYxXAIvbomGcYHwpESjTTmMAOfunjOSd38wB/EVQ/2Noi/PIlgR3yivDc0xdsvHswItjQ16Q6ZNopzhZuONwRgAvVTYnWNQvVM7kipxavdF6hrIpOFpxYJMZpIBDYIzXW9emyb1kVEdzQ6eoTDKwTOwjrhYpthmPzK43hY5P1akJ+Nk8QloVwlBe21Bj2IVWqKcYV+UfdEAh8gG+Z3yRUqqIYnyQfhjJe7+r40H63v1pExChfss3OSlEZ4xfnx5QRVEKyVb/AQU7+Xl7NR9+f/9F8oESgkaOxo1HgH3GJlOxnQs0noPPi8miscavZrbB3N98jNybVMsw8OEkvxfDzrWGinkXw8kqpIeHtfiYDdW/dBhy1PdguIYZu+q7BaqEaV2EaCbGwGLhNGLSI+m2pttPmT/vyA/tJrNROQVQeZThrqY6Z6ic/Q2n+QkOOarUlhCTDBH2zIItQMA5hjJdnt7FKCw9NuwNeyZlpjk8unEm8j7dm2lnnBM5giQZcOvEGqKg4OHCwumulkq2wmkeMUpQMHiuoqzioBOsCRD69ntnXXDV8qku6yqjcofeVrSqRUpMqqZJFMD4pAibfGaWgIscr7wte8x8kgKq8m+0AKqnvvJ3l/mLj4PtnlkkMj+XXZuflrfp4/yFCzJUCOPUvQl1Q/lDcSBCxLK2U0scIaX9SblaFso+4NgT4BwUYe8O8CTiWQCdQQkIjARmdPKrg1KGGSR/q6KygTYPT5g4BuUgIhQFg2UMCAl7DQIRZBhJehygy7hVQCHsHVLz+AosIjsN+TMoRjoLOMIL/Qxd4poBvab83bN6jky7nC0U7tkOZFU3/FWeUXSzQT1OZEZDwBBfzfDiODEm4x2BZa5bqPKe+V8kCT4sjgRyDIuD9gU7AZhQjW/3v3aDG28gREPVSCVWy9A9KmQJAXTkzVPZMBquPRsUY0klEsAm4LFVo9D0MpP5RPRSYTLuFK6nlgkQoJzs+b3p5m6DNu2GJFDlK1JAvnNh+QlXX4EZbTosF') format('woff2'),
+       url('iconfont.woff?t=1657421787746') format('woff'),
+       url('iconfont.ttf?t=1657421787746') format('truetype'),
+       url('iconfont.svg?t=1657421787746#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cart:before {
+  content: "\e6af";
+}
+
+.icon-message:before {
+  content: "\e6bc";
+}
+
+.icon-shop:before {
+  content: "\e676";
+}
+

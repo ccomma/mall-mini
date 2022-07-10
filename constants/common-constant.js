@@ -1,4 +1,11 @@
 
+const CommonSignConstant = {
+  /**
+   * 下划线
+   */
+  UNDERLINE: '_'
+}
+
 /**
  * 规格选项状态
  */
@@ -17,14 +24,13 @@ const CellStatusConstant = {
   FORBIDDEN: -1
 }
 
-const CommonSignConstant = {
-  /**
-   * 下划线
-   */
-  UNDERLINE: '_'
+const ShoppingTypeConstant = {
+  CART: 0,
+  BUY: 1
 }
 
 export {
+  CommonSignConstant,
   CellStatusConstant,
-  CommonSignConstant
+  ShoppingTypeConstant
 }

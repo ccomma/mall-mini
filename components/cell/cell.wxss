@@ -8,7 +8,7 @@
   background-color: #f2f2f2;
   font-size: 22rpx;
   border: 2rpx solid #f2f2f2;
-  border-radius: 50px;
+  border-radius: 100rpx;
   min-width: 70rpx;
 }
 

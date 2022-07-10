@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "my-realm": "/components/realm/realm"
+    "my-realm": "/components/realm/realm",
+    "my-detail-tar-bar": "/components/detail-tar-bar/detail-tar-bar"
   }
 }

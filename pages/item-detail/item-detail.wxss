@@ -1,1 +1,8 @@
 /* pages/item-detail/item-detail.wxss */
+
+.tar-bar {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 60rpx;
+  width: 100%;
+}
