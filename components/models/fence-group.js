@@ -1,3 +1,4 @@
+import { ArrayUtil } from "../../utils/array-util";
 import { Matrix } from "../../utils/matrix";
 import { Fence } from "./fence";
 
@@ -24,9 +25,13 @@ class FenceGroup {
      */
     _initFences(skuList) {
         // 获取规格矩阵
-        let specs = skuList.map(sku => sku.specs);
+        let specsArray = skuList.map(sku => sku.specs);
         // 转置矩阵，把每一行转换为 fence
-        this.fences = Matrix.transpose(specs).map(row => Fence.instance(row));
+        this.fences = Matrix.transpose(specsArray)
+            // 去重
+            .map(row => ArrayUtil.distinct(row, spec => spec.valueId))
+            // 转换为 fence
+            .map(row => Fence.instance(row));
     }
 
 }

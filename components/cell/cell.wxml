@@ -1,3 +1,5 @@
 <view bind:tap="onTap" class="container {{cell.status > 0 ? 'selected' : cell.status < 0 ? 'forbidden' : ''}}">
+  <!-- 图片 -->
+  <!-- 属性值 -->
   <text>{{cell.value}}</text>
 </view>

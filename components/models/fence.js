@@ -40,9 +40,7 @@ class Fence {
      */
     _initCells() {
         // build cells
-        let cells = this.specs.map(spec => Cell.instance(spec));
-        // 去重
-        this.cells = ArrayUtil.distinctObjectArray(cells, cell => cell.valueId);
+        this.cells = this.specs.map(spec => Cell.instance(spec));
     }
 
 }

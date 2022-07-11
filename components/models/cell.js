@@ -14,6 +14,9 @@ class Cell {
     /** 状态，默认未选中 */
     status = CellStatusConstant.UNSELECT;
 
+    /** 图片属性 */
+    image;
+
     
     /**
      * 构建一个 Cell 对象
@@ -26,6 +29,9 @@ class Cell {
         cell.keyId = spec.keyId;
         cell.valueId = spec.valueId;
         cell.value = spec.value;
+        if (spec.image) {
+            cell.image = spec.image;
+        }
         return cell;
     }
 
