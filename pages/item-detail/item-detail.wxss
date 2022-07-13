@@ -1,5 +1,18 @@
 /* pages/item-detail/item-detail.wxss */
 
+.top {
+  height: 680rpx;
+}
+
+.item-image {
+  width: 100%;
+  height: 680rpx;
+}
+
+.item-name {
+  
+}
+
 .tar-bar {
   position: fixed;
   bottom: 0;

@@ -23,3 +23,9 @@
   border-color: #E1251B;
   background-color: #FFF4F4;
 }
+
+.small-image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}

@@ -1,6 +1,39 @@
+<!-- 轮播图 -->
+<view>
+  <swiper class="top"	indicator-dots circular>
+    <block wx:for="{{item.imageList}}" wx:key="index">
+      <swiper-item>
+        <image class="item-image" mode="aspectFill" src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- item view -->
+<view>
+  <!-- 价格、操作 -->
+  <view>
+    <!-- 价格 -->
+    <view></view>
+    <!-- 操作 -->
+    <view>
+      <!-- 收藏 -->
+      <view></view>
+      <!-- 分享 -->
+      <view></view>
+    </view>
+  </view>
+  <!-- 优惠券 -->
+  <view></view>
+  <!-- name -->
+  <view>
+    <text class="item-name"></text>
+  </view>
+  <!-- desc -->
+  <view></view>
+</view>
+<!-- 固定条 -->
+<my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotocha="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
 <!-- 规格选择 -->
 <l-popup show="{{showRealm}}" content-align="bottom">
     <my-realm bind:confirmtap="onConfirmTap" item="{{item}}"></my-realm>
 </l-popup>
-<!-- 固定条 -->
-<my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotocha="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
