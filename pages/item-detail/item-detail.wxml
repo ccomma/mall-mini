@@ -9,28 +9,44 @@
     </swiper>
 </view>
 <!-- item view -->
-<view>
+<view class="item-info-view">
     <!-- 价格、操作 -->
-    <view>
+    <view class="price-container">
         <!-- 价格 -->
-        <view></view>
+        <view class="price-view">
+            <l-price value="{{item.price}}" unit-size="40" value-size="70" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
+        </view>
         <!-- 操作 -->
-        <view>
+        <view class="opt-view">
             <!-- 收藏 -->
-            <view></view>
+            <view class="badge-container">
+                <view></view>
+                <view>收藏</view>
+            </view>
             <!-- 分享 -->
-            <view></view>
+            <view class="badge-container">
+                <view></view>
+                <view>分享</view>
+            </view>
         </view>
     </view>
     <!-- 优惠券 -->
-    <view></view>
+    <view class="coupon-view">
+        <!-- 优惠券 -->
+        <view class="coupon-list"></view>
+        <!-- 操作 -->
+        <view>
+            <!-- 查看 -->
+            <view>查看</view>
+        </view>
+    </view>
     <!-- name -->
-    <view>
-        <text class="item-name">{{item.itemName}}</text>
+    <view class="item-name">
+        <text>{{item.itemName}}</text>
     </view>
     <!-- desc -->
-    <view>
-        <text class="item-desc">{{item.desc}}</text>
+    <view class="item-desc">
+        <text>{{item.desc}}</text>
     </view>
 </view>
 <!-- 固定条 -->

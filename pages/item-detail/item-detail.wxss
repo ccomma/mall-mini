@@ -1,5 +1,6 @@
 /* pages/item-detail/item-detail.wxss */
 
+/* 图片 */
 .top {
   height: 680rpx;
 }
@@ -9,10 +10,66 @@
   height: 680rpx;
 }
 
-.item-name {
-  
+/* item 信息 */
+.item-info-view {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
 }
 
+.price-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 价格 */
+.price-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.price-decimal {
+  font-size: 40rpx;
+}
+
+/* 操作 */
+.opt-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.badge-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 优惠券 */
+.coupon-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coupon-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-name {
+  margin-bottom: 22rpx;
+  font-weight: bold;
+}
+
+.item-desc {
+  color: #a0a0a0;
+  font-size: 25rpx;
+}
+
+/* 固定条 */
 .tar-bar {
   position: fixed;
   bottom: 0;
