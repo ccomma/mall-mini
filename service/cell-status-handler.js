@@ -1,5 +1,5 @@
-import { CellStatusConstant } from "../../constants/common-constant";
-import { Cell } from "./cell";
+import { CellStatusConstant } from "../constants/common-constant";
+import { Cell } from "../models/view/cell";
 
 class CellStatusHandler {
 

@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "my-cell": "/components/cell/cell"
-  }
-}

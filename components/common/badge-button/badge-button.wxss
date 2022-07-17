@@ -1,0 +1,18 @@
+/* components/common/badge-button/badge-button.wxss */
+
+.container {
+    width: 50%;
+    height: 110rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconfont {
+    font-size: 40rpx;
+}
+
+.icon-text {
+    font-size: 20rpx;
+}

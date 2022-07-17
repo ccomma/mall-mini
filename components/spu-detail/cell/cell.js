@@ -1,4 +1,4 @@
-import { CellStatusConstant } from "../../constants/common-constant";
+import { CellStatusConstant } from "../../../constants/common-constant";
 
 Component({
   data: {},

@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "my-fence": "/components/fence/fence"
+    "my-cell": "/components/spu-detail/cell/cell"
   }
 }

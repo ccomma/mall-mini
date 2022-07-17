@@ -1,9 +1,10 @@
-import { Cell } from "../models/cell";
-import { CellStatusHandler } from "../models/cell-status-handler";
-import { CellStatusHolder } from "../models/cell-status-holder";
-import { FenceGroup } from "../models/fence-group";
-import { ViewItem } from "../models/view-item";
-import { ViewItemHandler } from "../models/view-item-handler";
+
+import { CellStatusHandler } from "../../../service/cell-status-handler";
+import { CellStatusHolder } from "../../../service/cell-status-holder";
+import { FenceGroup } from "../../../models/view/fence-group";
+import { ViewItem } from "../../../models/view/view-item";
+import { ViewItemHandler } from "../../../service/view-item-handler";
+import { Cell } from "../../../models/view/cell";
 
 Component({
   data: {

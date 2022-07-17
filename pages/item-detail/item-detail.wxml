@@ -1,7 +1,7 @@
 <!-- 轮播图 -->
 <view>
     <swiper class="top" indicator-dots circular>
-        <block wx:for="{{item.imageList}}" wx:key="index">
+        <block wx:for="{{spu.imageList}}" wx:key="index">
             <swiper-item>
                 <image class="item-image" mode="aspectFill" src="{{item}}"></image>
             </swiper-item>
@@ -14,7 +14,7 @@
     <view class="price-container">
         <!-- 价格 -->
         <view class="price-view">
-            <l-price value="{{item.price}}" unit-size="40" value-size="70" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
+            <l-price value="{{spu.price}}" unit-size="35" value-size="60" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
         </view>
         <!-- 操作 -->
         <view class="opt-view">
@@ -26,32 +26,42 @@
             <!-- 分享 -->
             <view class="badge-container">
                 <view></view>
-                <view>分享</view>
+                <l-button special open-type="share">
+                    分享
+                </l-button>
             </view>
         </view>
     </view>
     <!-- 优惠券 -->
-    <view class="coupon-view">
-        <!-- 优惠券 -->
-        <view class="coupon-list"></view>
+    <view class="activity-view">
+        <view class="activity-list">
+            <!-- 活动 -->
+            <block wx:for="{{spu.activityList}}" wx:key="index">
+                <l-tag type="reading" bg-color="#FFF4F4" font-color="#E1251B" l-class="activity-tag">
+                    {{item.name}}
+                </l-tag>
+            </block>
+            <!-- 优惠券 -->
+            <block></block>
+        </view>
         <!-- 操作 -->
         <view>
-            <!-- 查看 -->
-            <view>查看</view>
+            <!-- 领券 -->
+            <text>领券</text>
         </view>
     </view>
     <!-- name -->
     <view class="item-name">
-        <text>{{item.itemName}}</text>
+        <text>{{spu.itemName}}</text>
     </view>
     <!-- desc -->
     <view class="item-desc">
-        <text>{{item.desc}}</text>
+        <text>{{spu.desc}}</text>
     </view>
 </view>
 <!-- 固定条 -->
-<my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotocha="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
+<my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotochat="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
 <!-- 规格选择 -->
 <l-popup show="{{showRealm}}" content-align="bottom">
-    <my-realm bind:confirmtap="onConfirmTap" item="{{item}}"></my-realm>
+    <my-realm bind:confirmtap="onConfirmTap" item="{{spu}}"></my-realm>
 </l-popup>

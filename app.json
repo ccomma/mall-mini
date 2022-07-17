@@ -42,7 +42,7 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "my-water-flow-item": "/components/water-flow-item/water-flow-item",
-    "my-count": "/components/count/count",
+    "my-count": "/components/common/count/count",
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
     "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
@@ -53,6 +53,8 @@
     "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
     "l-counter": "/miniprogram_npm/lin-ui/counter/index",
     "l-badge": "/miniprogram_npm/lin-ui/badge/index",
-    "l-popup": "/miniprogram_npm/lin-ui/popup/index"
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index"
   }
 }

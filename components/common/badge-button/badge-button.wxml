@@ -1,0 +1,6 @@
+<view bind:tap="onTap" class="container">
+  <view class="iconfont icon-class out-class" />
+  <text class="icon-text">
+    <slot />
+  </text>
+</view>

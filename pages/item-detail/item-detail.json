@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "my-realm": "/components/realm/realm",
-    "my-detail-tar-bar": "/components/detail-tar-bar/detail-tar-bar"
+    "my-realm": "/components/spu-detail/realm/realm",
+    "my-detail-tar-bar": "/components/spu-detail/detail-tar-bar/detail-tar-bar"
   }
 }
