@@ -1,5 +1,5 @@
 <view bind:tap="onTap" class="container">
-  <view class="iconfont icon-class out-class" />
+  <view class="iconfont icon out-class" />
   <text class="icon-text">
     <slot />
   </text>

@@ -1,6 +1,6 @@
 // components/common/badge-button/badge-button.js
 Component({
-  externalClasses: ["icon-class", "out-class"],
+  externalClasses: ["icon", "out-class"],
 
   /**
    * 组件的属性列表

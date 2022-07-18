@@ -1,4 +1,5 @@
 /* pages/item-detail/item-detail.wxss */
+@import "../../static/iconfont/iconfont.wxss";
 
 /* 图片 */
 .top {
@@ -36,15 +37,11 @@
 
 /* 操作 */
 .opt-view {
+  padding-top: 10rpx;
+  width: 150rpx;
   display: flex;
   flex-direction: row;
-}
-
-.badge-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
 }
 
 /* 优惠券 */

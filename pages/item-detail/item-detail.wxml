@@ -19,17 +19,11 @@
         <!-- 操作 -->
         <view class="opt-view">
             <!-- 收藏 -->
-            <view class="badge-container">
-                <view></view>
-                <view>收藏</view>
-            </view>
+            <my-badge-button icon="icon-like">收藏</my-badge-button>
             <!-- 分享 -->
-            <view class="badge-container">
-                <view></view>
-                <l-button special open-type="share">
-                    分享
-                </l-button>
-            </view>
+            <l-button special open-type="share">
+                <my-badge-button icon="icon-share">分享</my-badge-button>
+            </l-button>
         </view>
     </view>
     <!-- 优惠券 -->
