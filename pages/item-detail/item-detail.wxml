@@ -39,9 +39,10 @@
             <block></block>
         </view>
         <!-- 操作 -->
-        <view>
+        <view class="take-coupon">
             <!-- 领券 -->
             <text>领券</text>
+            <view class="iconfont icon-right arrow-font"></view>
         </view>
     </view>
     <!-- name -->
