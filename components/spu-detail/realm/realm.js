@@ -16,25 +16,25 @@ Component({
   },
 
   properties: {
-    item: Object
+    spu: Object
   },
 
   observers: {
-    item: function (item) {
-      if (!item) {
+    spu: function (spu) {
+      if (!spu) {
         return;
       }
 
       // 获取 fenceGroup
-      let fenceGroup = FenceGroup.instance(item);
+      let fenceGroup = FenceGroup.instance(spu);
 
-      let viewItem = ViewItem.instance(item);
+      let viewItem = ViewItem.instance(spu);
 
       let cellStatusHolder = CellStatusHolder.instance(fenceGroup.fences.length);
 
       let viewItemHandler = ViewItemHandler.instance(viewItem, cellStatusHolder);
 
-      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, item, viewItemHandler, cellStatusHolder);
+      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, spu, viewItemHandler, cellStatusHolder);
       fenceGroupHandler.initStatus(viewItem);
 
       // 数据绑定
@@ -43,6 +43,16 @@ Component({
       this.data.fenceGroupHandler = fenceGroupHandler;
       this.bindFenceGroupData(fenceGroup);
       this.bindViewItemData(viewItem);
+
+      // 触发事件
+      this.triggerEvent('init1', {
+        viewItem: viewItem
+      }, {
+        // 开启冒泡
+        bubbles: true,
+        // 跨越组件边界
+        composed: true
+      });
     }
   },
 
@@ -78,7 +88,7 @@ Component({
     onConfirmTap(event) {
       if (this.data.cellStatusHolder.isAllSelected()) {
         // ? 是否请求获取库存进行判断
-        this.triggerEvent('confirmtap')
+        this.triggerEvent('confirmtap');
       }
     },
 

@@ -18,7 +18,7 @@
     <view class="inner-scroll-view">
       <!-- fences -->
       <block wx:for="{{fenceGroup.fences}}" wx:key="index">
-        <my-fence bind:celltap="onCellTap" fence="{{item}}"></my-fence>
+        <my-fence bind:celltap="onCellTap" fence="{{spu}}"></my-fence>
       </block>
       <view class="counter-container">
         <text class="counter-text">数量</text>

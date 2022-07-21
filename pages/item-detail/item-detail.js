@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    selectedSku: {},
     spu: {
       itemName: '【海外名品】【100%正品|已质检】高级联名限量版衣服',
       desc: '爆款防嗮专场，119元任选3件，全场低至39元起，速抢！',
@@ -238,6 +239,8 @@ Page({
 
   },
 
+  // ============== 事件 ==============
+
   /**
    * 前往店铺
    * 
@@ -299,6 +302,13 @@ Page({
     else {
 
     }
+  },
+
+  onInit1(event) {
+    console.log(event.detail.viewItem);
+    this.setData({
+      selectedSku: event.detail.viewItem
+    });
   }
 
 })

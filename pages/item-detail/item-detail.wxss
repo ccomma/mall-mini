@@ -12,14 +12,15 @@
 }
 
 /* item 信息 */
-.item-info-view {
+.item-container {
   padding: 10rpx 40rpx 40rpx 40rpx;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #f5f5f5;
+  margin-bottom: 22rpx;
 }
 
-.price-container {
+.price-opt-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,7 +28,7 @@
 }
 
 /* 价格 */
-.price-view {
+.price-container {
   display: flex;
   flex-direction: row;
 }
@@ -37,7 +38,7 @@
 }
 
 /* 操作 */
-.opt-view {
+.opt-container {
   padding-top: 10rpx;
   width: 150rpx;
   display: flex;
@@ -46,7 +47,7 @@
 }
 
 /* 优惠券 */
-.activity-view {
+.activity-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -82,6 +83,18 @@
 .item-desc {
   color: #a0a0a0;
   font-size: 25rpx;
+}
+
+/* sku 选择 */
+.sku-container {
+  display: flex;
+  flex-direction: column;
+}
+.spec-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* 固定条 */
