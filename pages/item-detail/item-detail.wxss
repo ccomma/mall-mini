@@ -1,6 +1,10 @@
 /* pages/item-detail/item-detail.wxss */
 @import "../../static/iconfont/iconfont.wxss";
 
+.container {
+  padding-bottom: 174rpx;
+}
+
 /* 图片 */
 .top {
   height: 670rpx;

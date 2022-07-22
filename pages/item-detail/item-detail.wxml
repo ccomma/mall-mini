@@ -1,75 +1,77 @@
-<!-- 轮播图 -->
-<view>
-    <swiper class="top" indicator-dots circular>
-        <block wx:for="{{spu.imageList}}" wx:key="index">
-            <swiper-item>
-                <image class="item-image" mode="aspectFill" src="{{item}}"></image>
-            </swiper-item>
-        </block>
-    </swiper>
-</view>
-<!-- item view -->
-<view class="item-container">
-    <!-- 价格、操作 -->
-    <view class="price-opt-container">
-        <!-- 价格 -->
-        <view class="price-container">
-            <l-price value="{{spu.price}}" unit-size="35" value-size="60" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
-        </view>
-        <!-- 操作 -->
-        <view class="opt-container">
-            <!-- 收藏 -->
-            <my-badge-button icon="icon-like">收藏</my-badge-button>
-            <!-- 分享 -->
-            <l-button special open-type="share">
-                <my-badge-button icon="icon-share">分享</my-badge-button>
-            </l-button>
-        </view>
-    </view>
-    <!-- 优惠券 -->
-    <view class="activity-container">
-        <view class="activity-list">
-            <!-- 活动 -->
-            <block wx:for="{{spu.activityList}}" wx:key="index">
-                <l-tag type="reading" bg-color="#FFF4F4" font-color="#E1251B" l-class="activity-tag">
-                    {{item.name}}
-                </l-tag>
-            </block>
-            <!-- 优惠券 -->
-            <block></block>
-        </view>
-        <!-- 操作 -->
-        <view class="take-coupon">
-            <!-- 领券 -->
-            <text>领券</text>
-            <view class="iconfont icon-right arrow-font"></view>
-        </view>
-    </view>
-    <!-- name -->
-    <view class="item-name">
-        <text>{{spu.itemName}}</text>
-    </view>
-    <!-- desc -->
-    <view class="item-desc">
-        <text>{{spu.desc}}</text>
-    </view>
-</view>
-<!-- 选择规格、地址 -->
-<view class="sku-container">
-    <view class="spec-select">
-        <text>已选</text>
-        <block wx:for="{{selectedSku.selectedList}}" wx:key="index">
-          <text>{{item.value}}，</text>
-        </block>
-        <text>{{selectedSku.count}}个</text>
-    </view>
+<view class="container">
+    <!-- 轮播图 -->
     <view>
-        <view>送至</view>
+        <swiper class="top" indicator-dots circular>
+            <block wx:for="{{spu.imageList}}" wx:key="index">
+                <swiper-item>
+                    <image class="item-image" mode="aspectFill" src="{{item}}"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- item view -->
+    <view class="item-container">
+        <!-- 价格、操作 -->
+        <view class="price-opt-container">
+            <!-- 价格 -->
+            <view class="price-container">
+                <l-price value="{{spu.price}}" unit-size="35" value-size="60" color="#E1251B" autofix reserve-digit="2" l-decimal-class="price-decimal" l-dot-class="price-decimal"></l-price>
+            </view>
+            <!-- 操作 -->
+            <view class="opt-container">
+                <!-- 收藏 -->
+                <my-badge-button icon="icon-like">收藏</my-badge-button>
+                <!-- 分享 -->
+                <l-button special open-type="share">
+                    <my-badge-button icon="icon-share">分享</my-badge-button>
+                </l-button>
+            </view>
+        </view>
+        <!-- 优惠券 -->
+        <view class="activity-container">
+            <view class="activity-list">
+                <!-- 活动 -->
+                <block wx:for="{{spu.activityList}}" wx:key="index">
+                    <l-tag type="reading" bg-color="#FFF4F4" font-color="#E1251B" l-class="activity-tag">
+                        {{item.name}}
+                    </l-tag>
+                </block>
+                <!-- 优惠券 -->
+                <block></block>
+            </view>
+            <!-- 操作 -->
+            <view class="take-coupon">
+                <!-- 领券 -->
+                <text>领券</text>
+                <view class="iconfont icon-right arrow-font"></view>
+            </view>
+        </view>
+        <!-- name -->
+        <view class="item-name">
+            <text>{{spu.itemName}}</text>
+        </view>
+        <!-- desc -->
+        <view class="item-desc">
+            <text>{{spu.desc}}</text>
+        </view>
+    </view>
+    <!-- 选择规格、地址 -->
+    <view class="sku-container">
+        <view class="spec-select">
+            <text>已选</text>
+            <block wx:for="{{selectedSku.selectedList}}" wx:key="index">
+                <text>{{item.value}}，</text>
+            </block>
+            <text>{{selectedSku.count}}个</text>
+        </view>
+        <view>
+            <view>送至</view>
+        </view>
     </view>
 </view>
 <!-- 固定条 -->
 <my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotochat="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
 <!-- 规格选择 -->
 <l-popup show="{{showRealm}}" content-align="bottom">
-    <my-realm bind:confirmtap="onConfirmTap" bind:init1="onInit1" spu="{{spu}}"></my-realm>
+    <my-realm bind:getdata="onGetData" bind:confirmtap="onConfirmTap" spu="{{spu}}"></my-realm>
 </l-popup>

@@ -15,7 +15,7 @@ Page({
       imageList: ['https://img12.360buyimg.com/n1/jfs/t1/218841/29/10294/238788/61d82744Ec7eecae7/ea10f975e09d5743.jpg', 'https://img12.360buyimg.com/n1/jfs/t1/157867/24/24911/216189/61d82746E1b987814/4bed4d80ade7370a.jpg', 'http://img11.360buyimg.com//n0/jfs/t1/91576/31/21045/230194/61d8274cEea559838/f6c6389c6d69c1b2.jpg', 'https://img14.360buyimg.com/n1/jfs/t1/126962/13/21249/216535/61d82748Ee8b442e7/af37082e488aedbe.jpg'],
       price: 35,
       memberPrice: 30,
-      activityList: [{ name: '2件8折' }, {name: '满169享8.5折'}],
+      activityList: [{ name: '2件8折' }, { name: '满169享8.5折' }],
       skuList: [{
         specs: [{
           keyId: 1,
@@ -184,9 +184,9 @@ Page({
    */
   async onLoad(options) {
     let pid = options.pid;
-    // let item = await Item.getWithSkuList(pid);
+    // let spu = await Item.getWithSkuList(pid);
     // this.setData({
-    //   item: item
+    //   spu: spu
     // });
   },
 
@@ -303,9 +303,8 @@ Page({
 
     }
   },
-
-  onInit1(event) {
-    console.log(event.detail.viewItem);
+  onGetData(event) {
+    console.log(event.detail);
     this.setData({
       selectedSku: event.detail.viewItem
     });

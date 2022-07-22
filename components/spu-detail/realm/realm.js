@@ -43,16 +43,6 @@ Component({
       this.data.fenceGroupHandler = fenceGroupHandler;
       this.bindFenceGroupData(fenceGroup);
       this.bindViewItemData(viewItem);
-
-      // 触发事件
-      this.triggerEvent('init1', {
-        viewItem: viewItem
-      }, {
-        // 开启冒泡
-        bubbles: true,
-        // 跨越组件边界
-        composed: true
-      });
     }
   },
 
@@ -102,6 +92,8 @@ Component({
       this.setData({
         viewItem: viewItem
       });
+      
+      this.triggerEvent('getdata', {viewItem: viewItem});
     }
   }
 
