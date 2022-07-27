@@ -73,5 +73,5 @@
 <my-detail-tar-bar class="tar-bar" bind:gotoshop="onGoToShop" bind:gotochat="onGoToChat" bind:gotocart="onGoToCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></my-detail-tar-bar>
 <!-- 规格选择 -->
 <l-popup show="{{showRealm}}" content-align="bottom">
-    <my-realm bind:getdata="onGetData" bind:confirmtap="onConfirmTap" spu="{{spu}}"></my-realm>
+    <my-realm bind:confirmtap="onConfirmTap" bind:getdata="onGetData" spu="{{spu}}" />
 </l-popup>

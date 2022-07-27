@@ -16,19 +16,12 @@ class CellStatusHandler {
     // cellMap = new Map();
 
 
-    static instance(fenceGroup, item, viewItemHandler, cellStatusHolder) {
+    static instance(fenceGroup, spu, viewItemHandler, cellStatusHolder) {
         let handler = new CellStatusHandler();
-        handler.skuList = item.skuList;
+        handler.skuList = spu.skuList;
         handler.fenceGroup = fenceGroup;
         handler.viewItemHandler = viewItemHandler;
         handler.cellStatusHolder = cellStatusHolder;
-
-        // init map
-        // fenceGroup.fences.forEach(fence => {
-        //     handler.fenceMap.set(fence.id, fence);
-        //     fence.cells.forEach(cell => handler.cellMap.set(cell.unionId(), cell));
-        // });
-
         return handler;
     }
 

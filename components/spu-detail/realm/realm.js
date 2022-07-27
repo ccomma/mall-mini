@@ -35,7 +35,7 @@ Component({
       let viewItemHandler = ViewItemHandler.instance(viewItem, cellStatusHolder);
 
       let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, spu, viewItemHandler, cellStatusHolder);
-      fenceGroupHandler.initStatus(viewItem);
+      fenceGroupHandler.initStatus();
 
       // 数据绑定
       this.data.cellStatusHolder = cellStatusHolder;
@@ -59,14 +59,14 @@ Component({
       this.bindFenceGroupData(this.data.fenceGroup);
       this.bindViewItemData(this.data.viewItem);
     },
-    
+
     /**
      * 数量选择器点击事件
      * 
      * @param {*} event 
      */
     onCounterTap(event) {
-      this.data.viewItemHandler.refresh({count: event.detail.count});
+      this.data.viewItemHandler.refresh({ count: event.detail.count });
       this.bindViewItemData(this.data.viewItem);
     },
 
@@ -92,8 +92,8 @@ Component({
       this.setData({
         viewItem: viewItem
       });
-      
-      this.triggerEvent('getdata', {viewItem: viewItem});
+
+      this.triggerEvent('getdata', { viewItem: viewItem }, { bubbles: true, composed: true });
     }
   }
 

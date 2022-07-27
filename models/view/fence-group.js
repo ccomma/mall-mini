@@ -11,12 +11,12 @@ class FenceGroup {
     /**
      * 构建一个 FenceGroup 对象
      * 
-     * @param   {object}     item item 对象
+     * @param   {object}     spu spu 对象
      * @returns {FenceGroup} 栅栏组
      */
-    static instance(item) {
+    static instance(spu) {
         let fenceGroup = new FenceGroup();
-        fenceGroup._initFences(item.skuList);
+        fenceGroup._initFences(spu.skuList);
         return fenceGroup;
     }
 

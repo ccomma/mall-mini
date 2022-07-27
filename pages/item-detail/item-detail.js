@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 已选 sku
     selectedSku: {},
     spu: {
       itemName: '【海外名品】【100%正品|已质检】高级联名限量版衣服',
@@ -175,6 +176,7 @@ Page({
         price: 65
       }]
     },
+    // 是否展示 realm
     showRealm: false,
     shoppingType: ''
   },
@@ -293,6 +295,7 @@ Page({
    * @param {*} event 
    */
   onConfirmTap(event) {
+    console.log(event);
     // 根据点击类型加入购物车还是账单页（转换为 CartItem 进行算价）
     // 加入购物车
     if (this.data.shoppingType === ShoppingTypeConstant.CART) {

@@ -1,4 +1,3 @@
-import { ArrayUtil } from "../../utils/array-util";
 import { Cell } from "./cell";
 
 class Fence {
