@@ -20,33 +20,59 @@ Component({
   },
 
   observers: {
-    spu: function (spu) {
+    'spu': function (spu) {
+      this.initData(spu);
+    }
+  },
+
+  lifetimes: {
+    /**
+     * 在组件实例进入页面节点树时执行
+     * 在 observers 之后执行
+     */
+    attached: function () {
+      this.initRender();
+    },
+  },
+
+  methods: {
+    /**
+     * 初始化数据对象
+     * 
+     * @param {*} spu 
+     * @returns 
+     */
+    initData(spu) {
       if (!spu) {
         return;
       }
 
-      // 获取 fenceGroup
+      // 创建相关对象模型及处理器
       let fenceGroup = FenceGroup.instance(spu);
-
       let viewItem = ViewItem.instance(spu);
-
       let cellStatusHolder = CellStatusHolder.instance(fenceGroup.fences.length);
-
       let viewItemHandler = ViewItemHandler.instance(viewItem, cellStatusHolder);
-
       let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, spu, viewItemHandler, cellStatusHolder);
-      fenceGroupHandler.initStatus();
 
       // 数据绑定
+      this.data.fenceGroup = fenceGroup;
+      this.data.viewItem = viewItem;
       this.data.cellStatusHolder = cellStatusHolder;
       this.data.viewItemHandler = viewItemHandler;
       this.data.fenceGroupHandler = fenceGroupHandler;
-      this.bindFenceGroupData(fenceGroup);
-      this.bindViewItemData(viewItem);
-    }
-  },
+    },
 
-  methods: {
+    /**
+     * 初始化渲染
+     */
+    initRender() {
+      this.data.fenceGroupHandler.initStatus();
+      this.bindFenceGroupData(this.data.fenceGroup);
+      this.bindViewItemData(this.data.viewItem);
+    },
+
+    // ================================================= events =================================================
+
     /**
      * 规格点击事件
      * 
@@ -82,6 +108,8 @@ Component({
       }
     },
 
+    // ================================================= bindData =================================================
+
     bindFenceGroupData(fenceGroup) {
       this.setData({
         fenceGroup: fenceGroup
@@ -93,8 +121,10 @@ Component({
         viewItem: viewItem
       });
 
+      // 刷新详情页数据
       this.triggerEvent('getdata', { viewItem: viewItem }, { bubbles: true, composed: true });
     }
+
   }
 
 })
