@@ -9,7 +9,7 @@
             </block>
         </swiper>
     </view>
-    <!-- item view -->
+    <!-- item container -->
     <view class="item-container">
         <!-- 价格、操作 -->
         <view class="price-opt-container">
@@ -57,15 +57,26 @@
     </view>
     <!-- 选择规格、地址 -->
     <view class="sku-container">
-        <view class="spec-select">
-            <text>已选</text>
-            <block wx:for="{{selectedSku.selectedList}}" wx:key="index">
-                <text>{{item.value}}，</text>
-            </block>
-            <text>{{selectedSku.count}}个</text>
+        <view class="select-box">
+            <text class="title">已选</text>
+            <view class="text">
+                <block wx:for="{{selectedSku.selectedList}}" wx:key="index">
+                    <text>{{item.value}}，</text>
+                </block>
+                <text>{{selectedSku.count}}个</text>
+            </view>
+            <view class="icon">
+                <view class="iconfont icon-more" />
+            </view>
         </view>
-        <view>
-            <view>送至</view>
+        <view class="select-box">
+            <text class="title">送至</text>
+            <view class="text">
+                <text>地址</text>
+            </view>
+            <view class="icon">
+                <view class="iconfont icon-more" />
+            </view>
         </view>
     </view>
 </view>

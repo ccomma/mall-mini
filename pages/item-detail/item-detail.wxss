@@ -3,6 +3,7 @@
 
 .container {
   padding-bottom: 174rpx;
+  background-color: #f5f5f5;
 }
 
 /* 图片 */
@@ -20,8 +21,8 @@
   padding: 10rpx 40rpx 40rpx 40rpx;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
-  margin-bottom: 22rpx;
+  background-color: #fff;
+  margin-bottom: 33rpx;
 }
 
 .price-opt-container {
@@ -93,18 +94,36 @@
 .sku-container {
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  border-radius: 24rpx;
 }
-.spec-select {
+.select-box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 33rpx 0;
+  font-size: 28rpx;
+}
+.select-box:first-child {
+  border-bottom: 1rpx solid #f5f5f5; 
+}
+.select-box .title {
+  margin: 0 32rpx;
+  font-weight: bold;
+}
+.select-box .text {
+  width: 530rpx;
+}
+.select-box .icon {
+  margin: 0 32rpx;
 }
 
 /* 固定条 */
 .tar-bar {
   position: fixed;
   bottom: 0;
-  margin-bottom: 60rpx;
+  padding-bottom: 60rpx;
   width: 100%;
+  background-color: #fff;
 }
