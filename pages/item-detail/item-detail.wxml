@@ -23,7 +23,7 @@
                 <my-badge-button icon="icon-like">收藏</my-badge-button>
                 <!-- 分享 -->
                 <l-button special open-type="share">
-                    <my-badge-button icon="icon-share">分享</my-badge-button>
+                    <my-badge-button icon="icon-forward">分享</my-badge-button>
                 </l-button>
             </view>
         </view>
@@ -57,7 +57,7 @@
     </view>
     <!-- 选择规格、地址 -->
     <view class="sku-container">
-        <view class="select-box">
+        <view class="select-box" bind:tap="onAddToCart">
             <text class="title">已选</text>
             <view class="text">
                 <block wx:for="{{selectedSku.selectedList}}" wx:key="index">
