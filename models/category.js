@@ -1,3 +1,4 @@
+import { ServiceName } from "../config/config";
 import { Http } from "../utils/http";
 
 class Category {
@@ -11,7 +12,7 @@ class Category {
      */
     static async getTopList() {
         return await Http.request({
-            url: `${Category.categoryV1}/get_category_list_by_top`
+            url: `${ServiceName.MINI_FRONT}/${Category.categoryV1}/get_category_list_by_top`
         });
     }
 

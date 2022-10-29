@@ -12,9 +12,6 @@ class CellStatusHandler {
 
     cellStatusHolder = {};
 
-    // fenceMap = new Map();
-    // cellMap = new Map();
-
 
     static instance(fenceGroup, spu, viewItemHandler, cellStatusHolder) {
         let handler = new CellStatusHandler();
@@ -58,6 +55,10 @@ class CellStatusHandler {
         // 3.渲染状态至 cell 中
         this.renderAll();
     }
+
+    
+
+    // todo: move to cell-handler
 
     selectCell(cell) {
         this.cellStatusHolder.putSelect(cell);

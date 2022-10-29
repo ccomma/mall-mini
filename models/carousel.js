@@ -1,3 +1,4 @@
+import { ServiceName } from "../config/config";
 import { Http } from "../utils/http";
 
 class Carousel {
@@ -11,7 +12,7 @@ class Carousel {
      */
     static async getList() {
         return await Http.request({
-            url: `${Carousel.carouselV1}/get_carousel_list_by_show`
+            url: `${ServiceName.MINI_FRONT}/${Carousel.carouselV1}/get_carousel_list_by_show`
         });
     }
 

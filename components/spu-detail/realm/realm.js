@@ -1,9 +1,9 @@
 
-import { CellStatusHandler } from "../../../service/cell-status-handler";
-import { CellStatusHolder } from "../../../service/cell-status-holder";
+import { CellStatusHandler } from "../../../handler/cell-status-handler";
+import { CellStatusHolder } from "../../../handler/cell-status-holder";
 import { FenceGroup } from "../../../models/view/fence-group";
 import { ViewItem } from "../../../models/view/view-item";
-import { ViewItemHandler } from "../../../service/view-item-handler";
+import { ViewItemHandler } from "../../../handler/view-item-handler";
 import { Cell } from "../../../models/view/cell";
 
 Component({

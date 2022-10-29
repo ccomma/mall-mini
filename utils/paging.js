@@ -14,7 +14,7 @@ class Paging {
 
     /**
      * 利用锁防抖
-     * true：锁未被占有；false：锁已被占有
+     * true：锁已被占有；false：锁未被占有
      */
     lock = false;
 

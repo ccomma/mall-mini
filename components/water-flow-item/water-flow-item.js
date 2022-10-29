@@ -10,6 +10,10 @@ Component({
     }
   },
   methods: {
+    /**
+     * 点击商品进入详情
+     * @param {*} event 
+     */
     onItemTap(event) {
       let pid = event.currentTarget.dataset.pid;
       this.router.navigateTo({
