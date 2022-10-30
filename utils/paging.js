@@ -74,7 +74,6 @@ class Paging {
 
     /**
      * 实际请求下一页方法
-     * TODO: 分页数据 pagingData 格式尚未明确
      * 
      * @returns 响应数据
      */
@@ -86,12 +85,12 @@ class Paging {
         }
 
         // 无数据，返回空
-        if (pagingData.total === 0) {
+        if (pagingData.totalCount === 0) {
             return PageResult.empty();
         }
 
         // 是否有下一页
-        this.hasNext = this._hasNext(this.pageIndex, pagingData.totalPage);
+        this.hasNext = this._hasNext(this.pageIndex, pagingData.pageCount);
         if (this.hasNext) {
             this.pageIndex++;
         }
@@ -125,14 +124,8 @@ class Paging {
             });
         }
 
-        Object.defineProperties(this.request.data, {
-            pageIndex: {
-                value: this.pageIndex
-            },
-            pageSize: {
-                value: this.pageSize
-            }
-        });
+        this.request.data.pageIndex = this.pageIndex;
+        this.request.data.pageSize = this.pageSize;
     }
 
     /**
