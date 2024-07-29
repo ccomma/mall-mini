@@ -12,7 +12,7 @@ Component({
     fenceGroup: {},
     cellStatusHolder: {},
     viewItemHandler: {},
-    fenceGroupHandler: {}
+    cellStatusHandler: {}
   },
 
   properties: {
@@ -47,26 +47,28 @@ Component({
         return;
       }
 
-      // 创建相关对象模型及处理器
-      let fenceGroup = FenceGroup.instance(spu);
+      // 创建相关对象模型
       let viewItem = ViewItem.instance(spu);
+      let fenceGroup = FenceGroup.instance(spu);
       let cellStatusHolder = CellStatusHolder.instance(fenceGroup.fences.length);
+
+      // 创建处理器
       let viewItemHandler = ViewItemHandler.instance(viewItem, cellStatusHolder);
-      let fenceGroupHandler = CellStatusHandler.instance(fenceGroup, spu, viewItemHandler, cellStatusHolder);
+      let cellStatusHandler = CellStatusHandler.instance(fenceGroup, spu, viewItemHandler, cellStatusHolder);
 
       // 数据绑定
       this.data.fenceGroup = fenceGroup;
       this.data.viewItem = viewItem;
       this.data.cellStatusHolder = cellStatusHolder;
       this.data.viewItemHandler = viewItemHandler;
-      this.data.fenceGroupHandler = fenceGroupHandler;
+      this.data.cellStatusHandler = cellStatusHandler;
     },
 
     /**
      * 初始化渲染
      */
     initRender() {
-      this.data.fenceGroupHandler.initStatus();
+      this.data.cellStatusHandler.initStatus();
       this.bindFenceGroupData(this.data.fenceGroup);
       this.bindViewItemData(this.data.viewItem);
     },
@@ -81,7 +83,7 @@ Component({
     onCellTap(event) {
       // fenceGroup
       let tapCell = Cell.instance(event.detail.cell);
-      this.data.fenceGroupHandler.tapCells([tapCell]);
+      this.data.cellStatusHandler.tapCells([tapCell]);
       this.bindFenceGroupData(this.data.fenceGroup);
       this.bindViewItemData(this.data.viewItem);
     },

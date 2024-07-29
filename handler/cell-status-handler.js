@@ -61,7 +61,8 @@ class CellStatusHandler {
     // todo: move to cell-handler
 
     selectCell(cell) {
-        this.cellStatusHolder.putSelect(cell);
+		this.cellStatusHolder.putSelect(cell);
+		this.cellStatusHolder.deleteUnselect(cell);
         this.render(cell);
         // 刷新 viewItem 中的已选
         this.viewItemHandler.refresh({count: 1, selectedList: this.cellStatusHolder.selectedList()});
@@ -94,6 +95,10 @@ class CellStatusHandler {
      * @param {[Cell]} cells cells
      */
     _reverseSelect(cells) {
+        if (!cells) {
+			return;
+		}
+
         // 反转已选
         cells.forEach(cell => {
             // 原来已选择该 cell => 取消选择
@@ -112,7 +117,7 @@ class CellStatusHandler {
         });
 
         // 如果全选更改商品展示信息
-        this.viewItemHandler.refreshFromSku(this.skuList, this.fenceGroup.fences.length);
+        this.viewItemHandler.refreshFromSku(this.skuList);
     }
 
     /**

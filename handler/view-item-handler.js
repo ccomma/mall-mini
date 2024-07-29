@@ -1,3 +1,4 @@
+import { Cart } from "../models/cart";
 
 class ViewItemHandler {
 
@@ -25,7 +26,8 @@ class ViewItemHandler {
             image: sku.image,
             price: sku.price,
             stock: sku.stock,
-            selectedList: this.cellStatusHolder.selectedList()
+            selectedList: this.cellStatusHolder.selectedList(),
+            maxCount: sku.stock
         })
         return true;
     }
@@ -49,6 +51,12 @@ class ViewItemHandler {
         }
         if (viewItem.count) {
             this.viewItem.count = viewItem.count;
+        }
+        if (viewItem.minCount) {
+            this.viewItem.minCount = viewItem.minCount;
+        }
+        if (viewItem.maxCount) {
+            this.viewItem.maxCount = Math.min(viewItem.maxCount, Cart.MAX_COUNT);
         }
     }
 
